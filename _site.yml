@@ -5,5 +5,3 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Physician Survey"
-      href: Physician-Survey.html
