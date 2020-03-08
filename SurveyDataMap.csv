@@ -1,0 +1,215 @@
+Question,Option
+Q4r1,Skin conditions
+Q4r2,Venous insufficiency
+Q4r3,Blood clotting
+Q4r4,Chronic pain
+Q4r5,Other (Please specify)
+Q7Ar1,Brochures and materials mailed to physicians
+Q7Ar2,Emails to physicians linking to venous educational websites
+Q7Ar3,Online seminars and CMEs on venous insufficiency
+Q7Ar4,In-person seminars and CMEs on venous insufficiency
+Q7Ar5,Medical journal article
+Q7Ar6,TV or radio advertising
+Q7Ar7,Print advertising
+Q7Ar8,"Online advertising, pop-up or banner ads"
+Q7Ar9,Social media posts
+Q7Ar10,Online website
+Q7Ar11,"Colleague, peer, partner in practice"
+Q7Ar12,Visits by pharmaceutical reps
+Q7Ar13,Visits by reps for facilities that treat venous insufficiency patients
+Q7Ar14,Visits by medical device reps
+Q7Ar15,Other (Please specify)
+Q7Br1,Brochures and materials at their physician's office
+Q7Br2,Emails from their physicians linking to venous educational websites
+Q7Br3,Medical journal articles
+Q7Br4,"TV, online or radio advertising"
+Q7Br5,Social media posts
+Q7Br6,Online website
+Q7Br7,Friends and/or family
+Q7Br8,Other (Please specify)
+Q8r1,Lifestyle changes
+Q8r2,Elevation and compression
+Q8r3,"Medications (diuretics, aspirin, etc.)"
+Q8r4,Ablation
+Q8r5,Sclerotherapy
+Q8r6,Surgery
+Q8r7,Other (Please specify)
+Q10r1,No local treatment facilities or clinics
+Q10r2,Not familiar with treatments offered by local facilities or clinics
+Q10r3,Don't know of any physicians that specialize in venous insufficiency
+Q10r4,Have had bad experiences referring patients
+Q10r5,Don't think a referral is necessary; prefer to treat patient myself
+Q10r6,Have not had any patients with severe enough venous insufficiency to refer to a specialist
+Q10r7,Other reasons (Please specify)
+Q14r1,Independent treatment facilities or clinics
+Q14r2,University medical centers
+Q14r3,Vascular physicians/phlebologists
+Q14r4,Radiologists
+Q14r5,Walk-in centers
+Q14r6,Other (Please specify)
+Q17r1,Reputation
+Q17r2,Professional relationship with Rep
+Q17r3,Professional relationship with specialist
+Q17r4,Past personal experience
+Q17r5,Proximity; easy patient access
+Q17r6,Insurance coverage
+Q17r7,Breadth of services available
+Q17r8,Availability; short wait time for appointments
+Q17r9,High level of service to referring physicians
+Q17r10,Good customer service for patients
+Q17r11,Patient satisfaction
+Q17r12,Good communication and follow-up
+Q17r13,Cost
+Q17r14,Electronic communication of results
+Q17r15,In-network with your practice
+Q17r16,Past outcome success
+Q21r1,Ineffective patient care
+Q21r2,Lack of insurance coverage
+Q21r3,Unavailability of necessary services or treatments
+Q21r4,Patient dissatisfaction
+Q21r5,Poor communication and follow-up
+Q21r6,Other (Please specify)
+Q21r7,Have not had any negative experiences
+Q22r1,By my patients
+Q22r2,By other physicians
+Q22r3,By the provider or facility
+Q22r4,By the media
+Q22r5,"By online sources, social media"
+Q22r6,Other (Please specify)
+Q23r1,Providing more/better educational materials to referring physicians
+Q23r2,Being more responsive in servicing referring physicians
+Q23r3,Providing better customer service to the patient
+Q23r4,Having a specialist more accessible for consultation
+Q23r5,Providing better communication and follow-up
+Q23r6,Open longer hours
+Q23r7,More locations; more convenient locations
+Q23r8,Quicker diagnosis and treatment
+Q23r9,Less time-consuming treatment
+Q23r10,Lower cost
+Q23r11,Less painful treatments
+Q23r12,Other (Please specify)
+Q24r1,Center for Vein Restoration
+Q24r2,Vein Clinics of America
+Q24r3,USA Vein Clinics
+Q24r4,Maryland Vein
+Q24r5,Capitol Vein and Laser
+Q24r6,CVI Cleveland Clinic
+Q24r7,Tufts Medical Center
+Q24ar1,Center for Vein Restoration
+Q24ar2,Vein Clinics of America
+Q24ar3,USA Vein Clinics
+Q24ar4,Maryland Vein
+Q24ar5,Capitol Vein and Laser
+Q24ar6,CVI Cleveland Clinic
+Q24ar7,Tufts Medical Center
+Q24br1c1,Visited frequently by a rep from the practice
+Q24br1c2,Know the physician personally or professionally
+Q24br1c3,Hospital affiliate or partner
+Q24br1c4,Local to my practice so I choose to send because they are close by
+Q24br1c5,Researched and networked and selected this doctor based off of recommendations
+Q24br1c6,Refer patients to one another (cross-refer partnership)
+Q24br1c7,Other
+Q24br2c1,Visited frequently by a rep from the practice
+Q24br2c2,Know the physician personally or professionally
+Q24br2c3,Hospital affiliate or partner
+Q24br2c4,Local to my practice so I choose to send because they are close by
+Q24br2c5,Researched and networked and selected this doctor based off of recommendations
+Q24br2c6,Refer patients to one another (cross-refer partnership)
+Q24br2c7,Other
+Q24br3c1,Visited frequently by a rep from the practice
+Q24br3c2,Know the physician personally or professionally
+Q24br3c3,Hospital affiliate or partner
+Q24br3c4,Local to my practice so I choose to send because they are close by
+Q24br3c5,Researched and networked and selected this doctor based off of recommendations
+Q24br3c6,Refer patients to one another (cross-refer partnership)
+Q24br3c7,Other
+Q24br4c1,Visited frequently by a rep from the practice
+Q24br4c2,Know the physician personally or professionally
+Q24br4c3,Hospital affiliate or partner
+Q24br4c4,Local to my practice so I choose to send because they are close by
+Q24br4c5,Researched and networked and selected this doctor based off of recommendations
+Q24br4c6,Refer patients to one another (cross-refer partnership)
+Q24br4c7,Other
+Q24br5c1,Visited frequently by a rep from the practice
+Q24br5c2,Know the physician personally or professionally
+Q24br5c3,Hospital affiliate or partner
+Q24br5c4,Local to my practice so I choose to send because they are close by
+Q24br5c5,Researched and networked and selected this doctor based off of recommendations
+Q24br5c6,Refer patients to one another (cross-refer partnership)
+Q24br5c7,Other
+Q24br6c1,Visited frequently by a rep from the practice
+Q24br6c2,Know the physician personally or professionally
+Q24br6c3,Hospital affiliate or partner
+Q24br6c4,Local to my practice so I choose to send because they are close by
+Q24br6c5,Researched and networked and selected this doctor based off of recommendations
+Q24br6c6,Refer patients to one another (cross-refer partnership)
+Q24br6c7,Other
+Q24br7c1,Visited frequently by a rep from the practice
+Q24br7c2,Know the physician personally or professionally
+Q24br7c3,Hospital affiliate or partner
+Q24br7c4,Local to my practice so I choose to send because they are close by
+Q24br7c5,Researched and networked and selected this doctor based off of recommendations
+Q24br7c6,Refer patients to one another (cross-refer partnership)
+Q24br7c7,Other
+Q24bOtherr1,Center for Vein Restoration
+Q24bOtherr2,Vein Clinics of America
+Q24bOtherr3,USA Vein Clinics
+Q24bOtherr4,Maryland Vein
+Q24bOtherr5,Capitol Vein and Laser
+Q24bOtherr6,CVI Cleveland Clinic
+Q24bOtherr7,Tufts Medical Center
+Q25r1,Center for Vein Restoration
+Q25r2,Vein Clinics of America
+Q25r3,USA Vein Clinics
+Q25r4,Maryland Vein
+Q25r5,Capitol Vein and Laser
+Q25r6,CVI Cleveland Clinic
+Q25r7,Tufts Medical Center
+Q26r1,Center for Vein Restoration
+Q26r2,Vein Clinics of America
+Q26r3,USA Vein Clinics
+Q26r4,Maryland Vein
+Q26r5,Capitol Vein and Laser
+Q26r6,CVI Cleveland Clinic
+Q26r7,Tufts Medical Center
+Q26r8,No reps visit me with respect to venous insufficiency
+Q27r1,Center for Vein Restoration
+Q27r2,Vein Clinics of America
+Q27r3,USA Vein Clinics
+Q27r4,Maryland Vein
+Q27r5,Capitol Vein and Laser
+Q27r6,CVI Cleveland Clinic
+Q27r7,Tufts Medical Center
+Q28r1,Center for Vein Restoration
+Q28r2,Vein Clinics of America
+Q28r3,USA Vein Clinics
+Q28r4,Maryland Vein
+Q28r5,Capitol Vein and Laser
+Q28r6,CVI Cleveland Clinic
+Q28r7,Tufts Medical Center
+Q29r1,Does regular visits
+Q29r2,Provides new information about treatment options
+Q29r3,Consults about specific patient problems
+Q29r4,Has a friendly personality
+Q29r5,Treats my office personnel well
+Q29r6,Understands the needs of my practice
+Q29r7,Doesn't waste my time
+Q29r8,Presents information in a fair and unbiased manner
+Q29r9,Asks me to refer to their facility; are direct
+Q29r10,Is able to answer questions
+Q29r11,Knows the facility well
+Q29r12,Follows up on questions
+Q29r13,Behaves professionally
+Q29r14,Trustworthy/Credible
+Q29r15,Persistent
+Q29ar1,Once a month or more
+Q29ar2,Once every 2-3 months
+Q29ar3,Less than once every 3 months
+Q30r1,Reps from a treatment facility visit you and bring along a physician from the facility who will be treating your patients
+Q30r2,"Physicians from a treatment facility sponsor ""lunch and learn"" sessions"
+Q33r1,Solo private practice
+Q33r2,Group private practice
+Q33r3,Hospital
+Q33r4,Clinic - inpatient
+Q33r5,Clinic - outpatient
+Q33r6,Other (Please specify)

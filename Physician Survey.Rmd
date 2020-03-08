@@ -1,0 +1,1272 @@
+---
+title: "Physician Survey"
+output:
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
+---
+
+
+
+## Agenda
+
+- Introduction
+- Demographics
+- Patient Dynamics
+- Competitor Analysis
+- PL Coverage
+- Dicsussion
+
+## Introduction
+
+The survey contains approxiamately 30 questions, including single choices, multiple choices and likert scale questions. Each question require a response. The survey is made up of screener, referrals, providers, reps and demographics. The purpose of this survey and the followup analysis is to get a better idea about how CVR performs in the industry and against its major competitors and help to make more effective strategies in terms of marketing, sales and operation.
+
+- Sample size: 207 physicians and 1 physician assistant took the survey
+- Compeletion time: From 3/7/2017 to 3/18/2017
+
+```{r setup, include=FALSE,echo=FALSE,error=FALSE,warning=FALSE,message=FALSE}
+knitr::opts_chunk$set(echo = FALSE,error = FALSE,warning = FALSE,message = FALSE)
+```
+
+```{r include=FALSE}
+#Load necessary library
+library(dplyr)
+library(plyr)
+library(readr)
+library(ggplot2)
+library(plotly)
+library(gridExtra)
+library(reshape2)
+library(tidyr)
+library(RColorBrewer)
+library(zipcode)
+library(leaflet)
+library(scales)
+library(data.table)
+library(stringr)
+library(stargazer)
+library(MASS)
+#Load Data
+#SurveyData <- read_csv("U:/R Projects/Survey_Data.csv")
+#SurveyData.demo<-SurveyData[,c(1:6)]
+
+#SurveyData.unmelt <-dcast(SurveyData, PersonID~SurveyQuestionMetadata)
+#SurveyData.unmelt<-merge(SurveyData.demo, SurveyData.unmelt, by = "PersonID")
+#SurveyData.unmelt<-SurveyData.unmelt%>% distinct(PersonID, .keep_all = TRUE)
+#SurveyData.unmelt$Region <- as.factor(paste(SurveyData.unmelt$State, SurveyData.unmelt$Region, sep = " "))
+
+#Directory1
+#SurveyData <- read_csv("U:/R Projects/Physician Survey/Survey_DataV2.csv")
+#SurveyDataMap <- read_csv("U:/R Projects/Physician Survey/SurveyDataMap.csv")
+
+#Directory2
+SurveyData <- read_csv("/Users/Leo/Personal/R Projects/Physician Survey/Survey_DataV2.csv")
+SurveyDataMap <- read_csv("/Users/Leo/Personal/R Projects/Physician Survey/SurveyDataMap.csv")
+
+SurveyData.demo<-SurveyData[,c(1,5,7,9,11,13)]
+
+
+```
+
+
+## Demographics slide 1{.flexbox}
+
+<div style="text-align: left"> 
+Question 2: What's your primary specialty?
+
+- 37% of the respondents are from Internal Medicine
+- 35% of the respondents are from Primary Care
+- 5% of the respondents are from Dermatology and Podiatry
+- Other specialties include ER, vascular surgery and others
+</div>
+
+```{r fig.width=5, fig.height=4}
+# #of Respondents by specialty
+#Question 2:What is your primary medical specialty?
+#Pie chart
+
+Colors<- brewer.pal(8,"Set2")
+
+SurveyData$Q2<-as.factor(SurveyData$Q2)
+
+df<- as.data.frame(table(SurveyData$Q2))
+
+plot_ly(df, labels = ~Var1, values = ~Freq, type = 'pie',
+        textposition = 'inside',
+        textinfo = 'label+percent',
+        hoverinfo = 'text',
+        text = ~paste(Var1,': ', Freq),
+        insidetextfont = list(color = '#FFFFFF'),
+        marker = list(colors = Colors,
+                      line = list(color = '#FFFFFF', width = 1)),
+        showlegend = FALSE) %>%
+  layout(title = "# of Respondents by Specialty", showlegend = F,
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+
+```
+
+
+
+
+## Demographics continue{.flexbox}
+
+<div style="text-align: left"> 
+
+By Operation System
+
+- 36% of the respondents are using IOS devices
+- 61.5% of the respondents are using Others/Desktop
+- Less than 3% come using Andriod devices
+
+By Devices
+
+- 61.5% are using Desktop
+- 32.7% are using Smart Phone
+- 5.77% are using Tablet
+
+By Browser
+
+- Chrome and Safari combined for 77.8% of the respondents
+- 16% of respondents are from IE (MSIE11 or MS Edge)
+
+</div>
+
+```{r fig.width=5, fig.height=4}
+# # of Respondent by Device/Operation System/Browser
+# Pie chart
+
+df.1<-as.data.frame(table(SurveyData$vmobileos))
+df.2<-as.data.frame(table(SurveyData$vmobiledevice))
+df.3<-as.data.frame(table(SurveyData$vbrowser))
+
+
+plot_ly() %>%
+  add_pie(data = df.1, labels = ~Var1, values = ~Freq, type = 'pie',
+        textposition = 'inside',
+        domain = list(x = c(0, 0.4), y = c(0.4, 1)),
+        textinfo = 'label+percent',
+        hoverinfo = 'text',
+        text = ~paste(Var1,': ', Freq),
+        insidetextfont = list(color = '#FFFFFF'),
+        marker = list(colors = Colors,
+                      line = list(color = '#FFFFFF', width = 1)),
+        showlegend = FALSE) %>%
+  add_pie(data = df.2, labels = ~Var1, values = ~Freq, type = 'pie',
+        textposition = 'inside',
+        domain = list(x = c(0.6, 1), y = c(0.4, 1)),
+        textinfo = 'label+percent',
+        hoverinfo = 'text',
+        text = ~paste(Var1,': ', Freq),
+        insidetextfont = list(color = '#FFFFFF'),
+        marker = list(colors = Colors,
+                      line = list(color = '#FFFFFF', width = 1)),
+        showlegend = FALSE)%>%
+  add_pie(data = df.3, labels = ~Var1, values = ~Freq, type = 'pie',
+        textposition = 'inside',
+        domain = list(x = c(0.2, 0.8), y = c(-1, 0.6)),
+        textinfo = 'label+percent',
+        hoverinfo = 'text',
+        text = ~paste(Var1,': ', Freq),
+        insidetextfont = list(color = '#FFFFFF'),
+        marker = list(colors = Colors,
+                      line = list(color = '#FFFFFF', width = 1)),
+        showlegend = FALSE)%>%
+  layout(title = "# of Respondents by OS/Device/Browser", showlegend = F,
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+
+remove(df.1,df.2,df.3)
+
+
+```
+
+
+## Demographics continue
+
+Distribution of Respondents by states
+
+- Survey covers respondents from all the states CVR currently covers except AL
+- NY has the most respondents, followed by MD and PA
+
+```{r fig.width=10, fig.height=4,fig.align='center'}
+#Map to show the geographical distribution of respondents
+#Question 3:What is the zip code of your primary practice location?
+#Map
+
+data(zipcode)
+map<- as.data.frame(table(SurveyData$Q3))
+map<-merge(map,zipcode,by.x = "Var1",by.y = "zip")
+
+leaflet(map)%>% 
+  addTiles() %>%
+  addCircleMarkers(
+    ~longitude,~latitude,
+    radius = ~Freq
+  )
+
+```
+
+
+## Demographics Continue{.flexbox .vcenter}
+
+
+
+```{r fig.cap="         Q31:How many years have you been in practice?    "}
+
+# Histogram to show the distrution of respondents' year of experience
+#Question 31:How many years have you been in practice?
+
+
+#ncurve<-  hist(round(rnorm(300,mean(SurveyData$Q31),sd(SurveyData$Q31))))
+#remove(ncurve)
+#ncurve<-data.frame(id = 1:300, Year = round(rnorm(300,mean(SurveyData$Q31),sd(SurveyData$Q31))),bin = sample(9,300,replace=T))
+
+plot_ly(x = ~SurveyData$Q31, type = "histogram",opacity=0.8,
+        marker = list(color = 'rgb(158,202,225)',
+                      line= list(color = 'rgb(8,48,107)',width = 1.5))) %>%
+  layout(title = "Distribution of Respondents by Year of Experience",
+         xaxis = list(title = "Year of Experience"),
+         yaxis = list(title = "Count"))
+
+```
+
+## Patient dynamics{.flexbox .vcenter}
+
+```{r fig.cap="         Q32:What proportion of your total patients have a VI condition?    "}
+# Histogram to show the distrution of respondents' % of patients with VI
+#Question 32:Approximately what proportion of your total patients would you say have a venous insufficiency condition? 
+
+
+plot_ly(x = ~SurveyData$Q32r1, type = "histogram",opacity=0.8,nbinsx =30,
+        marker = list(color = 'rgb(158,202,225)',
+                      line= list(color = 'rgb(8,48,107)',width = 1.5))) %>%
+  layout(title = "Distribution of % of Patients seen with VI",
+         xaxis = list(title = "% of Patients seen with VI"),
+         yaxis = list(title = "Count"))
+
+```
+
+<div class="notes">
+
+- The distribution is right skewed
+- The mean is about 13% of the patients are seen with VI, median is 10%
+
+</div>
+
+
+## Patient dynamics Continue{.flexbox}
+
+<div style="text-align: left"> 
+
+Q4: Please select which of the following conditions <br>you currently treat
+
+- Skin conditions
+- Venous insufficiency
+- Blood clotting
+- Chronic pain
+- Other (Please specify) 
+
+Venous Insufficiency
+
+- Dermatology treats the most % of patients with VI
+- Podiatry and Wound Care treats more than 30% of patients<br> with VI
+
+</div>
+
+```{r fig.height=5,fig.width=5}
+
+#Question 4: Please select which of the following conditions you currently treat.
+#Stacked bar chart to show the % of patients with conditions seen by specialty
+
+df<-SurveyData[,c(1,22:26)]
+df.melt<-melt(df,id = "PersonID")
+df.melt<-subset(df.melt,df.melt$value>0)
+df.melt<-df.melt[,c(1:2)]
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+df.melt<-as.data.frame(table(df.melt$Q2,df.melt$Option))
+total<-ddply(df.melt,~Var1,summarize,n=sum(Freq))
+df.melt <- merge(df.melt,total)
+df.melt$perc <- df.melt$Freq/df.melt$n
+
+m <- list(
+  l = 50,
+  r = 50,
+  b = 100,
+  t = 100,
+  pad = 4
+)
+
+
+plot_ly(df.melt,x = ~Var1, y = ~perc*100, type = 'bar',color = ~Var2,text= ~Freq,hoverinfo = 'text') %>% 
+  layout(yaxis = list(title = 'Percentage (%)'),barmode = "stack", margin = m,
+         xaxis = list(title = ""),
+         title = "% of Patients treated with Condition by Specialty",
+         legend = list(x = 0.5, y = -0.5,orientation = "h"))
+
+```
+
+<div class="notes">
+
+- VI conodition is mostly treated in Dermatalogy, followed by Wound Care and Podiatry
+
+</div>
+
+
+## Patient dynamics continue{.flexbox}
+
+<div style="text-align: left"> 
+
+Q32:Approximately what proportion of your total patients<br>would you say have a venous insufficiency condition?
+
+- Wound Care sees the most % of patients with VI<br>about 32%
+- Podiatry and Wound Care sees more than 30% of patients<br> with VI on average
+- Internal Medicine and Primary care sees about 10% of<br>patients with VI on average
+
+</div>
+
+
+```{r fig.height=5,fig.width=5}
+#Question 32:Approximately what proportion of your total patients would you say have a venous insufficiency condition?
+#Boxplot to compare % of patients seen with VI by specialty
+
+plot_ly(SurveyData,x= ~Q2, y= ~Q32r1, type = "box")%>% 
+  layout(yaxis = list(title = '% of patients seen with VI'), margin = m,
+         xaxis = list(title = ""),
+         title = "% of Patients seen with VI by specialty")
+
+```
+
+## Patient dynamics Continue{.flexbox .vcenter}
+```{r}
+#Question 16:About how many different treatment or referral options do you typically give to a patient?
+#histogram to compare different treatment provided by specialty
+df<-subset(SurveyData,SurveyData$Q16<30)
+plot_ly(x = ~df$Q16, type = "histogram",opacity=0.8,nbinsx =6,
+        marker = list(color = 'rgb(158,202,225)',
+                      line= list(color = 'rgb(8,48,107)',width = 1.5))) %>%
+  layout(title = "Distribution of # of treatments/referral options provided by providers",
+         xaxis = list(title = "# of treatments"),
+         yaxis = list(title = "Count"))
+
+
+
+```
+
+<div class="notes">
+
+- The distribution is slightly right skewed, which means more values in the lower end
+- More than half of the practices provide 2 or 3 treatments/referral options to the patients
+
+
+</div>
+
+## Patient dynamics continue{.flexbox .vcenter}
+Question 7A: Please select up to two of the following ways that the medical community might become better informed about treatment options for venous insufficiency that you think would be most effective.
+
+```{r }
+#Datatable to show the breakdown of the sources that can better inform medical community by State
+#Question 7A: Please select up to two of the following ways that the medical community might become better informed about treatment options for venous insufficiency that you think would be most effective.
+#Choose between datatable and barchart
+
+df.1<-SurveyData[,c(1,30:44)]
+df.1.melt<- melt(df.1,id = "PersonID")
+df.1.melt<-subset(df.1.melt,df.1.melt$value>0)
+df.1.melt<-df.1.melt[,c(1:2)]
+df.1.melt<-merge(df.1.melt,SurveyData.demo,by = "PersonID")
+df.1.melt<-merge(df.1.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+df.1.melt<-as.data.frame(table(df.1.melt$dmaDataSTATE_ABVc1,df.1.melt$Option))
+total<-ddply(df.1.melt,~Var1,summarize,n=sum(Freq))
+df.1.melt <- merge(df.1.melt,total)
+df.1.melt$perc <- paste(round(100*(df.1.melt$Freq/df.1.melt$n), 2), "%", sep="")
+df.1.melt$'Count/Percent' <- paste(df.1.melt$Freq,"/",df.1.melt$perc)
+df.1.melt<-df.1.melt[,c(1,2,6)]
+
+df.1.unmelt<- dcast(df.1.melt, Var1~Var2)
+colnames(df.1.unmelt)[1]<- "States"
+
+df.1.unmelt<-t(df.1.unmelt)
+
+colnames(df.1.unmelt) = df.1.unmelt[1, ]
+df.1.unmelt <- df.1.unmelt[-1, ]
+
+DT::datatable(df.1.unmelt,extensions = c('Scroller','FixedColumns') , fillContainer = TRUE, 
+              options = list(
+  deferRender = TRUE,
+  scrollY = 200,
+  scroller = TRUE,
+  fixedColumns = list(leftColumns = 1)))
+
+
+```
+<div class="notes">
+
+- MD: Medical Journal article, Colleague, visit by rep, online seminars
+- MI: Medical Journal article, Online seminars, In-person seminars
+- NY: Medical Journal atricle, Online seminars, In-person seminars
+- PA: Medical Journal article, Online seminars, Colleague
+- VA: Online seminars, Colleague, Medical Journal article
+
+</div>
+
+
+
+
+```{r eval=FALSE}
+#barchart to show the breakdown of the sources that can better inform medical community by State
+#Question 7A: Please select up to two of the following ways that the medical community might become better informed about treatment options for venous insufficiency that you think would be most effective.
+#Choose between datatable and barchart
+
+df.1<-SurveyData[,c(1,30:44)]
+df.1.melt<- melt(df.1,id = "PersonID")
+df.1.melt<-subset(df.1.melt,df.1.melt$value>0)
+df.1.melt<-df.1.melt[,c(1:2)]
+df.1.melt<-merge(df.1.melt,SurveyData.demo,by = "PersonID")
+df.1.melt<-merge(df.1.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+df.1.melt<-as.data.frame(table(df.1.melt$dmaDataSTATE_ABVc1,df.1.melt$variable))
+
+plot_ly() %>%
+  add_bars(data=df.1.melt,x=~Var1,y=~Freq,type = "bar",color =~Var2) %>%
+  layout(yaxis = list(title = ''),barmode = "group", margin = m,
+         xaxis = list(title = "State"),
+         title = "",
+         legend = list(x = 0.5, y = -0.5,orientation = "h"))
+
+```
+
+<div class="notes">
+
+Question 7A: Please select up to two of the following ways that the medical community might become better informed about treatment options for venous insufficiency that you think would be most effective.
+
+- 1:Brochures and materials mailed to physicians
+- 2:Emails to physicians linking to venous educational websites
+- 3:Online seminars and CMEs on venous insufficiency
+- 4:In-person seminars and CMEs on venous insufficiency
+- 5:Medical journal article
+- 6:TV or radio advertising
+- 7:Print advertising
+- 8:Online advertising, pop-up or banner ads
+- 9:Social media posts
+- 10:Online website
+- 11:Colleague, peer, partner in practice
+- 12:Visits by pharmaceutical reps
+- 13:Visits by reps for facilities that treat venous insufficiency patients
+- 14:Visits by medical device reps
+- 15:Other (Please specify)
+
+
+
+
+</div>
+
+
+
+
+## Patient dynamics continue {.flexbox .vcenter}
+
+Question 7B: Please select up to two of the following ways that the patient might become better informed about treatment options for venous insufficiency that you think would be most effective.
+
+```{r}
+#Datatable to show the breakdown of the sources that can better inform medical community by State
+#Question 7B: Please select up to two of the following ways that the patient might become better informed about treatment options for venous insufficiency that you think would be most effective.
+#Choose between datatable and barchart
+
+df.2<-SurveyData[,c(1,46:53)]
+df.2.melt<- melt(df.2,id = "PersonID")
+df.2.melt<-subset(df.2.melt,df.2.melt$value>0)
+df.2.melt<-df.2.melt[,c(1:2)]
+df.2.melt<-merge(df.2.melt,SurveyData.demo,by = "PersonID")
+df.2.melt<-merge(df.2.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+df.2.melt<-as.data.frame(table(df.2.melt$dmaDataSTATE_ABVc1,df.2.melt$Option))
+total<-ddply(df.2.melt,~Var1,summarize,n=sum(Freq))
+df.2.melt <- merge(df.2.melt,total)
+df.2.melt$perc <- paste(round(100*(df.2.melt$Freq/df.2.melt$n), 2), "%", sep="")
+df.2.melt$'Count/Percent' <- paste(df.2.melt$Freq,"/",df.2.melt$perc)
+df.2.melt<-df.2.melt[,c(1,2,6)]
+
+df.2.unmelt<- dcast(df.2.melt, Var1~Var2)
+colnames(df.2.unmelt)[1]<- "States"
+
+df.2.unmelt<-t(df.2.unmelt)
+
+colnames(df.2.unmelt) = df.2.unmelt[1, ]
+df.2.unmelt <- df.2.unmelt[-1, ]
+
+DT::datatable(df.2.unmelt,extensions = c('FixedColumns') , fillContainer = TRUE, 
+              options = list(
+  deferRender = TRUE,
+  scrollY = 200,
+  scroller = TRUE,
+  fixedColumns = list(leftColumns = 1)))
+
+
+
+```
+
+<div class="notes">
+
+- MD: Brochures, TV/Online/Radio Advertising, Online Website, Social Media post
+- MI: Brochures, TV/Online/Radio Advertising, Online Website, Social Media post
+- NY: Brochures, TV/Online/Radio Advertising, Online Website
+- PA: Brochures, TV/Online/Radio Advertising, Social Media post
+- VA: Brochures, TV/Online/Radio Advertising, Online Website
+
+</div>
+
+
+
+
+
+```{r eval=FALSE}
+#barchart to show the breakdown of the sources that can better inform patient by State
+#Question 7B: Please select up to two of the following ways that the patient might become better informed about treatment options for venous insufficiency that you think would be most effective.
+
+
+df.2<-SurveyData[,c(1,46:53)]
+df.2.melt<- melt(df.2,id = "PersonID")
+df.2.melt<-subset(df.2.melt,df.2.melt$value>0)
+df.2.melt<-df.2.melt[,c(1:2)]
+df.2.melt<-merge(df.2.melt,SurveyData.demo,by = "PersonID")
+df.2.melt<-merge(df.2.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+df.2.melt<-as.data.frame(table(df.2.melt$dmaDataSTATE_ABVc1,df.2.melt$Option))
+
+plot_ly() %>%
+  add_bars(data=df.2.melt,x=~Var1,y=~Freq,type = "bar",color =~Var2) %>%
+  layout(yaxis = list(title = ''),barmode = "group", margin = m,
+         xaxis = list(title = "State"),
+         title = "",
+         showlegend = FALSE)
+
+```
+
+
+
+
+
+```{r eval= FALSE}
+n <- list(
+  l = 50,
+  r = 50,
+  b = 250,
+  t = 100,
+  pad = 4
+)
+df<-SurveyData[,c(1,75:80)]
+df.melt<-melt(df,id = "PersonID")
+df.melt<-subset(df.melt,df.melt$value==1)
+df.melt<-df.melt[,c(1:2)]
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+df.melt<-as.data.frame(table(df.melt$Option))
+plot_ly() %>%
+  add_bars(data = df.melt, x=~Var1,y=~Freq,type = "bar")%>%
+  layout(yaxis = list(title = ''),barmode = "group", margin = n,
+         xaxis = list(title = ""),
+         title = "",
+         showlegend = FALSE)
+```
+
+
+
+```{r eval=FALSE}
+#boxplot to compare the scale of how important of each choice in referring decision making
+#Question17: How important to you are the following when deciding to whom or where to refer your patients with venous insufficiency for treatment?
+
+df<-SurveyData[,c(1,84:99)]
+df.melt<-melt(df,id = "PersonID")
+df.melt<-subset(df.melt,df.melt$value>=1)
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+plot_ly(data = df.melt,x=~variable,y=~value,type = "box")%>%
+  layout(yaxis = list(title = 'Scale'),barmode = "group", margin = m,
+         xaxis = list(title = "Choice"),
+         title = "",
+         showlegend = FALSE)
+
+```
+
+
+
+## Patient dynamics continue {.flexbox .vcenter}
+Question17: How important to you are the following when deciding to whom or where to refer your patients with venous insufficiency for treatment?
+```{r}
+#Question17: How important to you are the following when deciding to whom or where to refer your patients with venous insufficiency for treatment?
+#Quantify which choice has the most affect in referring decision making
+
+df<-SurveyData[,c(1,84:99)]
+df.melt<-melt(df,id = "PersonID")
+df.melt<-subset(df.melt,df.melt$value>=1)
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+
+
+GetScale <- function(vector) {
+  if (vector == 5) {
+    return ("5.Extremely Important")
+  } else if (vector == 4) {
+    return ("4.Important")
+  } else if (vector == 3) {
+    return ("3.indifferent")
+  } else if (vector == 2) {
+    return ("2.Not Important")
+  } else
+    return ("1.Not at all important")
+}
+
+Scale <- sapply(df.melt$value, FUN = GetScale)
+df.melt$Scale <- c(Scale)
+df.tabu<- as.data.frame(table(df.melt$Option,df.melt$Scale))
+df.unmelt<- dcast(df.tabu, Var1~Var2)
+colnames(df.unmelt)[1]<-"Factors"
+
+DT::datatable(df.unmelt,fillContainer = FALSE,options = list(pagelength = 16))
+
+```
+
+## Model 1 Interpretation{.flexbox .vcenter}
+
+```{r}
+#Model to Quantify which choice has the most affect in referring decision making
+
+df.melt$Scale<-as.factor(df.melt$Scale)
+pom <- polr(data = df.melt, Scale~Option)
+#summary(pom)
+
+factor<- c("Breadth of services available","Cost","Electronic communication of results",
+               "Good communication and follow-up","Good customer service for patients","High level of service to referring physicians",
+               "In-network with your practice","Insurance coverage","Past outcome success","Past personal experience","Patient satisfaction",
+               "Professional relationship with Rep","Professional relationship with specialist","Proximity; easy patient access","Reputation")
+
+
+model<- as.data.frame(pom$coefficients)
+rownames(model) <- factor
+colnames(model)[1]<-"Coefficient"
+model$Odds<-exp(model$Coefficient)
+
+#Interpretation: Odds is exp(coefficient), the base line is Availability; short wait time for appointments (alphabetical order)
+#For example, the estimated odds that provider choose Breadth of service available is about 0.99 (almost the same) as they choose Availability; short wait time for appointments
+#The factors matters most is patient satisfaction, past outcome success and Reputation
+#Probibility of success = total events successful/total events
+#Odds of success = total events successful/total events unsuccessful
+
+DT::datatable(model,fillContainer = FALSE,options = list(pagelength = 16))
+
+```
+
+<div class="notes">
+
+A Proportional Odds Model are used to quantify which factor has the most influence in physician referring decision making.
+
+The model coefficients are shown in the table and the interpretation of the coefficient is the odds, which is exp(coefficient) of the factor compared to the baseline factor, which in this case would be availability. If the odds is greater than 1, it means that respondents are more likely to choose to the right direction of the scale than availability.
+
+For example, the estimated odds that provider choose Breadth of service available in the right direction (more important) is about 0.99 (almost the same) as they choose Availability
+
+The top factors are: Patient satisfaction, Past outcome success and Reputation
+
+</div>
+
+
+## Model Prediction 1
+
+```{r}
+ref<-df.unmelt[,c(1,2)]
+ref <- ref[order(ref$Factors),]
+
+#summary(pom)
+
+df.1<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[1,1]),type="p"))
+df.2<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[2,1]),type="p"))
+df.3<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[3,1]),type="p"))
+df.4<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[4,1]),type="p"))
+df.5<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[5,1]),type="p"))
+df.6<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[6,1]),type="p"))
+df.7<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[7,1]),type="p"))
+df.8<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[8,1]),type="p"))
+df.9<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[9,1]),type="p"))
+df.10<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[10,1]),type="p"))
+df.11<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[11,1]),type="p"))
+df.12<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[12,1]),type="p"))
+df.13<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[13,1]),type="p"))
+df.14<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[14,1]),type="p"))
+df.15<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[15,1]),type="p"))
+df.16<- as.data.frame(predict(pom,newdata = data.frame(Option=ref[16,1]),type="p"))
+
+
+df<- cbind(df.1,df.2,df.3,df.4,df.5,df.6,df.7,df.8,df.9,df.10,df.11,df.12,df.13,df.14,df.15,df.16)
+
+
+
+names(df) <- c("Availability; short wait time for appointments","Breadth of services available","Cost","Electronic communication of results",
+               "Good communication and follow-up","Good customer service for patients","High level of service to referring physicians",
+               "In-network with your practice","Insurance coverage","Past outcome success","Past personal experience","Patient satisfaction",
+               "Professional relationship with Rep","Professional relationship with specialist","Proximity; easy patient access","Reputation")
+
+df<-as.data.frame(round(df,2))
+df.t<-t(df)
+
+DT::datatable(df.t,fillContainer = FALSE,options = list(pagelength = 16))
+
+```
+
+
+## Competition Analysis{.flexbox .vcenter}
+Question 24: How familiar are you with the following venous insufficiency treatment centers?
+```{r}
+#Datatable to show the familarity score for each company
+#Question 24: How familiar are you with the following venous insufficiency treatment centers? 
+
+df<-SurveyData[,c(1,132:138)]
+df.melt<- melt(df,id = "PersonID")
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+cal<- as.data.frame(table(df.melt$Option,df.melt$value))
+cal<-dcast(cal,Var1~Var2)
+cal$Score<- 4*cal$`Very Familiar`+3*cal$Familiar+2*cal$`Somewhat Familiar`+1*cal$`Not Familiar`
+colnames(cal)[1] <- "Company/Familarity"
+cal<-cal[c(1,5,2,4,3,6)]
+
+DT::datatable(cal)
+
+
+```
+
+<div class="notes">
+
+The score is a weighted sum of each choice of each company, Verry Familiar count for 4 points and Not Familiar count for 1 point.
+
+We can see that the respondents are most familiar with Vein clinics of America, followed by Center for Vein Restoration and CVI Cleveland Clinic
+
+</div>
+
+
+## Competition Analysis slide 3{.flexbox .vcenter}
+
+```{r fig.width=8,fig.height=5}
+df<-SurveyData[,c(1,132:138)]
+df.melt<- melt(df,id = "PersonID")
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+cal<- as.data.frame(table(df.melt$Option,df.melt$value))
+cal<-dcast(cal,Var1~Var2)
+
+top_labels <- c('Very<br>Familiar', 'Familiar', 'Somewhat<br>Familiar','Not<br>Familiar')
+
+cal<-cal[,c(1,5,2,4,3)]
+colnames(cal)[1]<- "Company"
+
+
+plot_ly(cal, x = ~cal$`Very Familiar`  , y = ~Company, type = 'bar', orientation = 'h', name = "Very Familiar",
+        marker = list(color = 'rgba(38, 24, 74, 0.8)',
+                      line = list(color = 'rgb(248, 248, 249)', width = 1))) %>%
+  add_trace(x = ~cal$Familiar , marker = list(color = 'rgba(71, 58, 131, 0.8)'),name = "Familiar") %>%
+  add_trace(x = ~cal$`Somewhat Familiar` , marker = list(color = 'rgba(122, 120, 168, 0.8)'),name = "Somewhat Familiar") %>%
+  add_trace(x = ~cal$`Not Familiar` , marker = list(color = 'rgba(164, 163, 204, 0.85)'),name = "Not Familiar") %>%
+  layout(xaxis = list(title = "# of Respondents",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      showticklabels = FALSE,
+                      zeroline = FALSE,
+                      domain = c(0.15, 1)),
+         yaxis = list(title = "",
+                      showgrid = FALSE,
+                      showline = FALSE,
+                      zeroline = FALSE),
+         barmode = 'stack',
+         paper_bgcolor = 'rgb(248, 248, 255)', plot_bgcolor = 'rgb(248, 248, 255)',
+         margin = list(l = 120, r = 10, t = 140, b = 80),
+         showlegend = TRUE)
+
+
+```
+
+
+
+## Competition Analysis slide 2{.flexbox .vcenter}
+
+```{r}
+#Bubblechart to show the familarity score for VCA and CVR by State
+#Question 24: How familiar are you with the following venous insufficiency treatment centers? 
+
+#var<-c("Center for Vein Restoration","Vein Clinics of America")
+
+#df<-df.melt[(df.melt$Option %in% var), ]
+
+df.melt<-df.melt[,c(3,7,9)]
+
+GetScore <- function(vector) {
+  if (vector == "Very Familiar") {
+    return (4)
+  } else if (vector == "Familiar") {
+    return (3)
+  } else if (vector == "Somewhat Familiar") {
+    return (2)
+  } else
+    return (1)
+}
+
+Score <- sapply(df.melt$value, FUN = GetScore)
+df.melt$Score <- c(Score)
+colnames(df.melt)[2]<-"States"
+df.melt<-df.melt[,c(2,3,4)]
+
+df.agg <- df.melt %>%
+  group_by(States,Option) %>%
+  summarise(Score = sum(Score, na.rm = TRUE)) %>%
+  as.data.frame()
+
+df.unmelt<- dcast(df.agg, States~Option)
+
+plot_ly(df.unmelt, color = I("gray80")) %>%
+  add_segments(x = ~df.unmelt$`Center for Vein Restoration`, xend = ~df.unmelt$`Vein Clinics of America`, y = ~States, yend = ~States, 
+               showlegend = FALSE) %>%
+  add_markers(x = ~df.unmelt$`Center for Vein Restoration`, y = ~States, name = "CVR", color = I("pink")) %>%
+  add_markers(x = ~df.unmelt$`Vein Clinics of America`, y = ~States, name = "VCA", color = I("blue")) %>%
+  layout(
+    title = "Familarity by States between VCA and CVR",
+    xaxis = list(title = "Scores"),
+    margin = list(l = 65)
+  )
+
+
+
+```
+
+<div class="notes">
+
+This is a weighted score breakdown between VCA and CVR by state, we can see that VCA is more familiar than CVR in almost all the states that CVR currently covers
+
+</div>
+
+
+
+## Competition Analysis slide 4{.flexbox .vcenter}
+
+```{r}
+#Question 24a. Please select which centers you've referred patients for venous insufficiency.
+#Table to show the number of all choices (Assume NA answers are "I have not referred any patients" since companyies won't pipe in if previous answer is "Not familiar")
+
+df<-SurveyData[,c(1,139:145)]
+df[is.na(df)] <- "I have not referred any Patients"
+df.melt<- melt(df,id = "PersonID")
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+
+df.tabu<- as.data.frame(table(df.melt$Option,df.melt$value))
+df.unmelt<- dcast(df.tabu, Var1~Var2)
+colnames(df.unmelt)[1]<-"Company"
+
+df.unmelt<-df.unmelt[,c(1,5,2,3,4)]
+
+DT::datatable(df.unmelt,fillContainer = FALSE,options = list(pagelength = 16))
+
+
+
+```
+
+
+## Model 2 Interpretation
+
+```{r}
+#Center for Vein Restoration as baseline
+
+df.melt$value<-as.factor(df.melt$value)
+df.melt$Option<-as.factor(df.melt$Option)
+df.melt$value <- relevel(df.melt$value, "I have not referred any Patients")
+df.melt$Option <- relevel(df.melt$Option, "Center for Vein Restoration")
+pom <- polr(data = df.melt, value~Option)
+#summary(pom)
+
+companywocvr<- c("Capitol Vein and Laser","CVI Cleveland Clinic","Maryland Vein","Medical Center","USA Vein Clinics","Vein Clinics of America")
+
+model<- as.data.frame(pom$coefficients)
+rownames(model) <- companywocvr
+colnames(model)[1]<-"Coefficient"
+model$Odds<-exp(model$Coefficient)
+
+DT::datatable(model,fillContainer = FALSE,options = list(pagelength = 16))
+
+```
+
+## Model 2 prediction
+
+```{r}
+company<- c("Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America")
+
+df.1<- as.data.frame(predict(pom,newdata = data.frame(Option=company[1]),type="p"))
+df.2<- as.data.frame(predict(pom,newdata = data.frame(Option=company[2]),type="p"))
+df.3<- as.data.frame(predict(pom,newdata = data.frame(Option=company[3]),type="p"))
+df.4<- as.data.frame(predict(pom,newdata = data.frame(Option=company[4]),type="p"))
+df.5<- as.data.frame(predict(pom,newdata = data.frame(Option=company[5]),type="p"))
+df.6<- as.data.frame(predict(pom,newdata = data.frame(Option=company[6]),type="p"))
+df.7<- as.data.frame(predict(pom,newdata = data.frame(Option=company[7]),type="p"))
+
+df<- cbind(df.1,df.2,df.3,df.4,df.5,df.6,df.7)
+
+names(df)<-company
+df<-as.data.frame(round(df,2))
+df.t<-t(df)
+
+DT::datatable(df.t,fillContainer = FALSE,options = list(pagelength = 16))
+
+
+```
+
+
+## Competition Analysis slide 4{.flexbox}
+<div style="text-align: left"> 
+How did you become familiar with these centers?
+
+a) Visited frequently by a rep <br>from the practice
+b) Know the physician <br>personally or professionally
+c) Hospital affiliate or partner
+d) Local to my practice <br>so I choose to send <br>because they are close by
+e) Researched and networked and <br>selected this doctor based <br>off of recommendations
+f) Refer patients to one another <br>(cross-refer partnership)
+g) Other, please specify
+
+</div>
+
+```{r fig.width=5}
+#How did you become familiar with these centers?
+
+df<-SurveyData[,c(1,146:194)]
+df.melt<- melt(df,id = "PersonID")
+df.melt<-subset(df.melt,df.melt$value>=1)
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+
+df.melt<-df.melt[,c(1,9)]
+df.melt$Companycode<-substr(df.melt$variable, 4, 6)
+df.melt$Choice<-substr(df.melt$variable, 8, 8)
+
+GetCompany <- function(vector) {
+  if (vector == "br1") {
+    return ("Center for Vein Restoration")
+  } else if (vector == "br2") {
+    return ("Vein Clinics of America")
+  } else if (vector == "br3") {
+    return ("USA Vein Clinics")
+  } else if (vector == "br4") {
+    return ("Maryland Vein")
+  } else if (vector == "br5") {
+    return ("Capitol Vein and Laser")
+  } else if (vector == "br6") {
+    return ("CVI Cleveland Clinic")
+  } else
+    return ("Tufts Medical Center")
+}
+
+GetChoice <- function(vector) {
+  if (vector == 1) {
+    return ("A")
+  } else if (vector == 2) {
+    return ("B")
+  } else if (vector == 3) {
+    return ("C")
+  } else if (vector == 4) {
+    return ("D")
+  } else if (vector == 5) {
+    return ("E")
+  } else if (vector == 6) {
+    return ("F")
+  } else
+    return ("G")
+}
+
+
+Company <- sapply(df.melt$Companycode, FUN = GetCompany)
+df.melt$Company <- c(Company)
+Choice<- sapply(df.melt$Choice, FUN = GetChoice)
+df.melt$Choice<-c(Choice)
+
+df.melt<-as.data.frame(table(df.melt$Choice,df.melt$Company))
+
+plot_ly() %>%
+  add_bars(data=df.melt,x=~Var1,y=~Freq,type = "bar",color =~Var2) %>%
+  layout(yaxis = list(title = ''),barmode = "group",
+         xaxis = list(title = "Choice"),
+         title = "",
+         legend = list(x = 0.5, y = -0.5,orientation = "h"))
+
+```
+
+<div class="notes">
+
+a) Visited frequently by a rep from the practice: Center for Vein Restoration, Vein clinics of America
+b) Know the physician personally or professionally: Vein clinics of America, Center for Vein Restoration
+c) Hospital affiliate or partner: Vein Clinics of America,CVI Cleveland Clinic
+d) Local to my practice so I choose to send because they are close by: Vein Clinics of America, CVI Cleveland Clinic
+e) Researched and networked and selected this doctor based off of recommendations: CVI Cleveland Clinic, Vein Clinics of America
+f) Refer patients to one another(cross-refer partnership): Tufts Medical Center, Center for Vein Restoration
+g) Other, please specify
+</div>
+
+
+
+
+## Competition Analysis slide 5{.flexbox .vcenter}
+Question 25: How satisfied are you with your experiences referring your venous insufficiency patients to these centers?
+```{r}
+#Question 25: How satisfied are you with your experiences referring your venous insufficiency patients to these centers?
+#Tabulated table to show the percentage of each satisfacion level by company
+
+df<-SurveyData[,c(1,202:208)]
+df.melt<- melt(df,id = "PersonID")
+df.melt<-subset(df.melt,df.melt$value>=1)
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+
+GetSatisfaction <- function(vector) {
+  if (vector == 5) {
+    return ("5.Extremely Satisfied")
+  } else if (vector == 4) {
+    return ("4.Satisfied")
+  } else if (vector == 3) {
+    return ("3.indifferent")
+  } else if (vector == 2) {
+    return ("2.Not Satisfied")
+  } else
+    return ("1.Not at all Satisfied")
+}
+
+Satisfaction<- sapply(df.melt$value, FUN = GetSatisfaction)
+df.melt$Satisfaction <- c(Satisfaction)
+
+df.tabu<-as.data.frame(table(df.melt$Satisfaction,df.melt$Option))
+total<-ddply(df.tabu,~Var2,summarize,n=sum(Freq))
+df.melt<-merge(df.tabu,total)
+df.melt$perc <- paste(round(100*(df.melt$Freq/df.melt$n), 2), "%", sep="")
+df.melt<-df.melt[,c(1,2,5)]
+
+df.unmelt<- dcast(df.melt,Var2~Var1)
+colnames(df.unmelt)[1]<-"Company"
+
+DT::datatable(df.unmelt, fillContainer = FALSE, options = list(
+ columnDefs = list(list(className = 'dt-center', targets = 2:5))
+))
+
+```
+
+
+## PL Coverage slide 1{.flexbox .vcenter}
+Question 26:	For the treatment centers with which you are familiar, which ones have venous insufficiency reps that visit you?
+```{r fig.width=8}
+#Question 26:	For the treatment centers with which you are familiar, which ones have venous insufficiency reps that visit you? 
+#Pie Chart
+
+df<-SurveyData[,c(1,212:219)]
+df.melt<- melt(df,id = "PersonID")
+df.melt<-subset(df.melt,df.melt$value>=1)
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+
+df.tabu<-as.data.frame(table(df.melt$Option))
+
+df.tabu$Var1<- as.character(df.tabu$Var1)
+
+df.tabu[5,1]<-"No rep visit"
+
+plot_ly(df.tabu, labels = ~Var1, values = ~Freq, type = 'pie',
+        textposition = 'outside',
+        textinfo = 'label+percent',
+        hoverinfo = 'text',
+        text = ~paste(Var1,': ', Freq),
+        insidetextfont = list(color = '#FFFFFF'),
+        marker = list(colors = Colors,
+                      line = list(color = '#FFFFFF', width = 1)),
+        showlegend = FALSE) %>%
+  layout(title = "Rep Coverage", showlegend = F,
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+
+
+
+
+```
+
+## PL Coverage slide 2{.flexbox .vcenter}
+Question 27:	How frequently do venous insufficiency reps from each of the following facilities visit you?
+```{r}
+#Question 27:	How frequently do venous insufficiency reps from each of the following facilities visit you? 
+#Table
+
+df<-SurveyData[,c(1,220:226)]
+df.melt<- melt(df,id = "PersonID")
+df.melt <- na.omit(df.melt)
+
+
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+
+
+df.melt<-df.melt[,c(3,9)]
+
+
+df.melt<-as.data.frame(table(df.melt$Option,df.melt$value))
+
+total<-ddply(df.melt,~Var1,summarize,n=sum(Freq))
+df.melt<-merge(df.melt,total)
+df.melt$perc <- paste(round(100*(df.melt$Freq/df.melt$n), 2), "%", sep="")
+
+df.melt<-df.melt[,c(1,2,5)]
+
+
+df.unmelt<-dcast(df.melt,Var1~Var2)
+colnames(df.unmelt)[1]<-"Company"
+
+DT::datatable(df.unmelt, fillContainer = FALSE, options = list(
+ columnDefs = list(list(className = 'dt-center', targets = 2:4))
+))
+
+
+
+```
+
+## PL Coverage slide 2{.flexbox .vcenter}
+Question 29: How well do each of the following attributes describe the most effective venous insufficiency reps that you interact with?
+```{r}
+## What makes a good physician visits?
+##Question 29: How well do each of the following attributes describe the most effective venous insufficiency reps that you interact with?
+
+df<-SurveyData[,c(1,234:248)]
+df.melt<- melt(df,id = "PersonID")
+df.melt <- na.omit(df.melt)
+
+
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+
+GetScale <- function(vector) {
+  if (vector == "Describe them very well5") {
+    return ("Describe them very well")
+  } else if (vector == 4) {
+    return ("Describe them well")
+  } else if (vector == 3) {
+    return ("Indifferent")
+  } else if (vector == 2) {
+    return ("Do not describe them well")
+  } else
+    return ("Do not describe them at all")
+}
+
+PL<- sapply(df.melt$value, FUN = GetScale)
+df.melt$value <- c(PL)
+df.melt<-df.melt[,c(3,9)]
+
+df.tabu<-as.data.frame(table(df.melt$value,df.melt$Option))
+df.unmelt<-dcast(df.tabu,Var2~Var1)
+
+df.unmelt<-df.unmelt[,c(1,4,5,6,3,2)]
+colnames(df.unmelt)[1]<-"Factor"
+
+DT::datatable(df.unmelt, fillContainer = FALSE, options = list(
+ columnDefs = list(list(className = 'dt-center', targets = 2:6))
+))
+
+```
+
+## Model 3 Interpretation
+
+```{r}
+#"Asks me to refer to their facility; are direct" as baseline
+
+df.melt$value<-as.factor(df.melt$value)
+df.melt$Option<-as.factor(df.melt$Option)
+df.melt$value<- factor(df.melt$value,levels(df.melt$value)[c(3,4,5,2,1)])
+
+
+pom <- polr(data = df.melt, value~Option)
+#summary(pom)
+
+factor<-c("Behaves professionally","Consults about specific patient problems","Does regular visits",
+          "Doesn't waste my time","Follows up on questions","Has a friendly personality","Is able to answer questions","Knows the facility well",
+          "Persistent","Presents information in a fair and unbiased manner","Provides new information about treatment options",
+          "Treats my office personnel well","Trustworthy/Credible","Understands the needs of my practice")
+
+
+model<- as.data.frame(pom$coefficients)
+rownames(model) <- factor
+colnames(model)[1]<-"Coefficient"
+model$Odds<-exp(model$Coefficient)
+
+DT::datatable(model,fillContainer = FALSE,options = list(pagelength = 16))
+
+```
+<div class="notes">
+
+Top 3 factors in making a good physician liason from the perspective of a physician
+- Baseline: Asks me to refer to their facility; are direct
+- Behaves professionally
+- Treats my office personal well
+- Has a friendly personality
+
+
+</div>
+
+
+
+```{r eval= FALSE}
+#Question 30.	When making a decision on where to refer patients, how helpful are the following?
+#Dr. visit with PL vs Dr. Lunch & Learn in referring decision
+
+df<-SurveyData[,c(1,252,253)]
+df.melt<- melt(df,id = "PersonID")
+df.melt <- na.omit(df.melt)
+
+df.melt<-merge(df.melt,SurveyData.demo,by = "PersonID")
+df.melt<-merge(df.melt,SurveyDataMap,by.x = "variable",by.y = "Question")
+
+GetScale <- function(vector) {
+  if (vector == "Extremely helpful5") {
+    return ("Extremely helpful")
+  } else if (vector == 4) {
+    return ("helpful")
+  } else if (vector == 3) {
+    return ("Indifferent")
+  } else if (vector == 2) {
+    return ("Not Very helpful")
+  } else
+    return ("Not at all helpful")
+}
+
+Scale<- sapply(df.melt$value, FUN = GetScale)
+df.melt$value <- c(Scale)
+df.melt<-df.melt[,c(3,9)]
+
+df.tabu<-as.data.frame(table(df.melt$value,df.melt$Option))
+
+df.unmelt<-dcast(df.tabu,Var2~Var1)
+df.unmelt$Var2<-as.character(df.unmelt$Var2)
+
+df.unmelt[1,1]<-"Lunch & Learn"
+df.unmelt[2,1]<-"PL visit with Dr."
+
+df.unmelt$Var2<-as.factor(df.unmelt$Var2)
+df.unmelt<-df.unmelt[,c(1,2,3,5,4)]
+colnames(df.unmelt)[1]<-"Factor"
+df.melt$value<- as.factor(df.melt$value)
+
+df.melt$value<- factor(df.melt$value,levels(df.melt$value)[c(1,2,3,5,4)])
+df.melt$value<-as.factor(df.melt$value)
+df.melt$Option<-as.factor(df.melt$Option)
+
+pom <- polr(data = df.melt, value~Option)
+#summary(pom)
+
+factor<-c("PL Visit with Dr.")
+
+model<- as.data.frame(pom$coefficients)
+rownames(model) <- factor
+colnames(model)[1]<-"Coefficient"
+model$Odds<-exp(model$Coefficient)
+
+DT::datatable(model,fillContainer = FALSE,options = list(pagelength = 16))
+
+```
+
+
+
+
+
+

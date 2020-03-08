@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Physician Survey</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Physician Survey',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            ]
+    };
+  </script>
+
+  <link href="site_libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="site_libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-deck.js"></script>
+  <script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+  <script src="site_libs/plotly-binding-4.9.2/plotly.js"></script>
+  <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+  <link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+  <script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+  <link href="site_libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+  <script src="site_libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+  <link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+  <script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+  <link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+  <script src="site_libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+  <script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+  <script src="site_libs/leaflet-binding-2.0.3/leaflet.js"></script>
+  <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+  <script src="site_libs/datatables-binding-0.12/datatables.js"></script>
+  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+  <link href="site_libs/dt-ext-scroller-1.10.20/css/scroller.dataTables.min.css" rel="stylesheet" />
+  <script src="site_libs/dt-ext-scroller-1.10.20/js/dataTables.scroller.min.js"></script>
+  <link href="site_libs/dt-ext-fixedcolumns-1.10.20/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+  <script src="site_libs/dt-ext-fixedcolumns-1.10.20/js/dataTables.fixedColumns.min.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    summary {
+      display: list-item;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+/* https://github.com/ropensci/plotly/pull/524#issuecomment-468142578 */
+slide:not(.current) .plotly.html-widget{
+  display: block;
+}
+
+  </style>
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+          </hgroup>
+  </slide>
+
+<slide class=""><hgroup><h2>Agenda</h2></hgroup><article  id="agenda" class="smaller ">
+
+<ul>
+<li>Introduction</li>
+<li>Demographics</li>
+<li>Patient Dynamics</li>
+<li>Competitor Analysis</li>
+<li>PL Coverage</li>
+<li>Dicsussion</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Introduction</h2></hgroup><article  id="introduction" class="smaller ">
+
+<p>The survey contains approxiamately 30 questions, including single choices, multiple choices and likert scale questions. Each question require a response. The survey is made up of screener, referrals, providers, reps and demographics. The purpose of this survey and the followup analysis is to get a better idea about how CVR performs in the industry and against its major competitors and help to make more effective strategies in terms of marketing, sales and operation.</p>
+
+<ul>
+<li>Sample size: 207 physicians and 1 physician assistant took the survey</li>
+<li>Compeletion time: From 3/7/2017 to 3/18/2017</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Demographics slide 1</h2></hgroup><article  id="demographics-slide-1" class="smaller flexbox">
+
+<div style="text-align: left">
+<p>Question 2: What’s your primary specialty?</p>
+
+<ul>
+<li>37% of the respondents are from Internal Medicine</li>
+<li>35% of the respondents are from Primary Care</li>
+<li>5% of the respondents are from Dermatology and Podiatry</li>
+<li>Other specialties include ER, vascular surgery and others</li>
+</ul></div>
+
+<div id="htmlwidget-b3208de07a1efcbf7076" style="width:480px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b3208de07a1efcbf7076">{"x":{"visdat":{"2ecf29463c9b":["function () ","plotlyVisDat"]},"cur_data":"2ecf29463c9b","attrs":{"2ecf29463c9b":{"labels":{},"values":{},"textposition":"inside","textinfo":"label+percent","hoverinfo":"text","text":{},"insidetextfont":{"color":"#FFFFFF"},"marker":{"colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"# of Respondents by Specialty","showlegend":false,"xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["Dermatology","Internal Medicine","Obstetrics/Gynecology","Orthopedics","Other (Please specify)","Podiatry","Primary Care (GP, FP, IM)","Wound Care"],"values":[7,77,6,5,27,2,74,10],"textposition":["inside","inside","inside","inside","inside","inside","inside","inside"],"textinfo":"label+percent","hoverinfo":["text","text","text","text","text","text","text","text"],"text":["Dermatology :  7","Internal Medicine :  77","Obstetrics/Gynecology :  6","Orthopedics :  5","Other (Please specify) :  27","Podiatry :  2","Primary Care (GP, FP, IM) :  74","Wound Care :  10"],"insidetextfont":{"color":"#FFFFFF"},"marker":{"color":"rgba(31,119,180,1)","colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"type":"pie","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Demographics continue</h2></hgroup><article  id="demographics-continue" class="smaller flexbox">
+
+<div style="text-align: left">
+<p>By Operation System</p>
+
+<ul>
+<li>36% of the respondents are using IOS devices</li>
+<li>61.5% of the respondents are using Others/Desktop</li>
+<li>Less than 3% come using Andriod devices</li>
+</ul>
+
+<p>By Devices</p>
+
+<ul>
+<li>61.5% are using Desktop</li>
+<li>32.7% are using Smart Phone</li>
+<li>5.77% are using Tablet</li>
+</ul>
+
+<p>By Browser</p>
+
+<ul>
+<li>Chrome and Safari combined for 77.8% of the respondents</li>
+<li>16% of respondents are from IE (MSIE11 or MS Edge)</li>
+</ul></div>
+
+<div id="htmlwidget-82a708c97311bc91ece9" style="width:480px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-82a708c97311bc91ece9">{"x":{"visdat":{"2ecf23da07ed":["function () ","plotlyVisDat"],"2ecf3f3e6afe":["function () ","data"],"2ecf1ae26a22":["function () ","data"],"2ecf6a5ebf8":["function () ","data"]},"cur_data":"2ecf6a5ebf8","attrs":{"2ecf3f3e6afe":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"values":{},"labels":{},"type":"pie","textposition":"inside","domain":{"x":[0,0.4],"y":[0.4,1]},"textinfo":"label+percent","hoverinfo":"text","text":{},"insidetextfont":{"color":"#FFFFFF"},"marker":{"colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"inherit":true},"2ecf1ae26a22":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"values":{},"labels":{},"type":"pie","textposition":"inside","domain":{"x":[0.6,1],"y":[0.4,1]},"textinfo":"label+percent","hoverinfo":"text","text":{},"insidetextfont":{"color":"#FFFFFF"},"marker":{"colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"inherit":true},"2ecf6a5ebf8":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"values":{},"labels":{},"type":"pie","textposition":"inside","domain":{"x":[0.2,0.8],"y":[-1,0.6]},"textinfo":"label+percent","hoverinfo":"text","text":{},"insidetextfont":{"color":"#FFFFFF"},"marker":{"colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"# of Respondents by OS/Device/Browser","showlegend":false,"xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false},"data":[{"values":[5,75,128],"labels":["Android","iOS","Other/Desktop"],"type":"pie","textposition":["inside","inside","inside"],"domain":{"x":[0,0.4],"y":[0.4,1]},"textinfo":"label+percent","hoverinfo":["text","text","text"],"text":["Android :  5","iOS :  75","Other/Desktop :  128"],"insidetextfont":{"color":"#FFFFFF"},"marker":{"color":"rgba(31,119,180,1)","colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"frame":null},{"values":[128,68,12],"labels":["Desktop","Smartphone","Tablet"],"type":"pie","textposition":["inside","inside","inside"],"domain":{"x":[0.6,1],"y":[0.4,1]},"textinfo":"label+percent","hoverinfo":["text","text","text"],"text":["Desktop :  128","Smartphone :  68","Tablet :  12"],"insidetextfont":{"color":"#FFFFFF"},"marker":{"color":"rgba(255,127,14,1)","colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"frame":null},{"values":[73,11,12,22,1,89],"labels":["Chrome","Firefox","MS Edge","MSIE 11","Other Mozilla or Netscape","Safari"],"type":"pie","textposition":["inside","inside","inside","inside","inside","inside"],"domain":{"x":[0.2,0.8],"y":[-1,0.6]},"textinfo":"label+percent","hoverinfo":["text","text","text","text","text","text"],"text":["Chrome :  73","Firefox :  11","MS Edge :  12","MSIE 11 :  22","Other Mozilla or Netscape :  1","Safari :  89"],"insidetextfont":{"color":"#FFFFFF"},"marker":{"color":"rgba(44,160,44,1)","colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Demographics continue</h2></hgroup><article  id="demographics-continue-1" class="smaller ">
+
+<p>Distribution of Respondents by states</p>
+
+<ul>
+<li>Survey covers respondents from all the states CVR currently covers except AL</li>
+<li>NY has the most respondents, followed by MD and PA</li>
+</ul>
+
+<div id="htmlwidget-00c08e3f0615c1c1307f" style="width:960px;height:384px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-00c08e3f0615c1c1307f">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[40.732509,40.739022,40.74618,40.765714,40.76842,40.759015,40.786387,40.798502,40.791586,40.840686,40.867653,40.759511,40.709677,40.569394,40.838745,40.846745,40.842917,40.881086,40.907607,40.98845,40.943525,40.958689,40.915845,40.897783,41.125695,41.231408,40.787068,40.798839,40.796752,40.742901,40.771286,40.695286,40.649059,40.694214,40.702348,40.641436,40.576589,40.618561,40.767969,40.749463,40.726137,40.736076,40.724945,40.688688,40.747188,40.769942,40.589538,40.725257,40.864757,40.639534,40.673,40.651733,40.633103,40.932053,40.821698,40.905647,40.815215,40.763355,40.779911,40.317473,40.246802,40.211241,40.127907,40.169608,40.129509,39.974378,40.072293,40.175504,40.13477,40.178076,40.148759,40.149009,40.014541,40.058808,40.145859,39.992345,39.951062,39.952112,40.057661,40.064257,39.964012,40.035778,39.919812,40.157526,38.934866,38.937478,38.906778,38.900394,38.707135,38.893311,38.839663,38.999759,39.155449,39.093408,39.0509,39.11755,39.069108,39.532212,39.21536,39.207523,39.175004,39.164158,39.435789,39.419105,39.079059,39.563901,39.295306,39.376879,39.284607,39.229507,39.278056,39.33224,39.36225,39.297457,38.997511,39.451934,39.39667,38.864669,38.93276,38.885337,38.856795,38.88275,38.813013,38.817362,38.301829,37.557626,37.581696,36.826239,36.687543,36.839209,36.762459,36.839648,36.864047,37.115698,37.078196,39.272324,41.603797,41.706383,39.970241,39.742593,39.67859,39.898107,39.779492,41.044502,41.200465,40.457599,37.958873,37.999542,37.962542,42.465275,42.294987,42.335687,42.324338,42.427835,42.396194,42.33087,42.307088,42.331821,42.735535,42.272538,42.765918,43.199364,43.08767,42.927801],[-73.98935,-73.98205,-73.97759,-73.9856,-73.96045,-73.96732,-73.97709,-73.96811,-73.94575,-73.94154,-73.92,-73.99019,-74.00365,-74.11785,-73.92234,-73.89861,-73.83819,-73.90749,-73.83709,-73.79716,-73.88176,-73.82363,-73.78643,-73.77933,-74.12682,-74.01157,-73.72577,-73.73352,-73.68935,-73.67895,-73.92462,-73.98907,-73.93304,-73.96529,-73.94288,-74.01574,-73.99172,-73.9216,-73.82496,-73.81941,-73.79502,-73.87804,-73.8609,-73.82216,-73.63808,-73.65004,-73.72915,-73.64056,-73.62609,-73.69253,-73.70346,-73.71079,-73.71404,-73.10666,-73.37553,-73.33114,-73.50057,-73.52323,-73.47948,-75.12854,-74.93912,-75.0887,-75.12695,-75.21158,-75.06115,-75.36083,-75.12406,-74.84611,-75.20374,-75.1067,-74.98228,-74.83617,-75.25805,-75.40069,-75.1216,-75.27624,-75.14589,-75.15853,-75.08018,-75.00155,-75.14764,-75.1447,-75.15803,-75.27816,-77.06039,-76.99125,-77.04148,-77.05126,-77.8145,-77.014647,-76.91478,-77.10185,-77.07487,-77.1718,-77.12261,-77.23548,-76.97834,-76.30754,-76.87823,-76.82527,-76.85319,-76.6306,-76.63614,-76.78388,-76.55784,-76.98926,-76.62118,-76.7287,-76.55696,-76.61203,-76.74002,-76.50365,-76.58812,-76.592738,-76.49803,-77.442,-76.965,-77.18781,-77.1677,-77.09512,-77.05628,-77.13999,-77.11667,-77.1537,-77.47077,-77.48844,-77.51709,-76.41524,-76.22905,-76.09333,-76.06139,-76.15177,-76.29947,-76.5183,-76.49446,-77.77982,-83.5619,-83.7102,-86.15416,-86.11766,-86.08634,-86.18232,-86.132837,-85.30984,-85.10219,-85.49089,-87.37998,-87.57621,-87.55796,-83.2264,-83.25049,-83.28332,-83.3382,-83.36299,-83.37161,-83.47575,-83.11467,-83.04888,-84.62698,-85.69255,-86.10544,-86.2668,-86.19345,-85.54582],[1,1,3,1,2,2,1,2,3,1,1,1,1,1,1,3,2,1,1,1,1,1,1,1,1,1,2,1,3,3,1,1,1,1,1,1,1,1,2,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,2,1,2,1,1,2,2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,3,1,2,2,1,1,1,1,1,2,1,2,2,1,2,2,1,1,2,1,1,1,1,1,1,1,1,2,3,1,1,1,1,1,1,1,2,1,2,2,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1,1,1],null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[36.687543,43.199364],"lng":[-87.57621,-73.10666]}},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Demographics Continue</h2></hgroup><article  id="demographics-continue-2" class="smaller flexbox vcenter">
+
+<div class="figure">
+<div id="htmlwidget-44c5465c094a9d7bb68e" style="width:720px;height:432px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-44c5465c094a9d7bb68e">{"x":{"visdat":{"2ecf507da063":["function () ","plotlyVisDat"]},"cur_data":"2ecf507da063","attrs":{"2ecf507da063":{"x":{},"opacity":0.8,"marker":{"color":"rgb(158,202,225)","line":{"color":"rgb(8,48,107)","width":1.5}},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"histogram"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Respondents by Year of Experience","xaxis":{"domain":[0,1],"automargin":true,"title":"Year of Experience"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[12,5,16,18,6,24,40,27,4,9,5,12,18,9,23,17,15,24,33,19,15,15,30,19,5,31,16,19,15,29,24,37,17,14,30,22,37,25,30,30,27,11,20,25,10,16,15,29,15,25,30,29,23,18,19,15,6,5,16,21,5,16,5,23,23,25,25,25,5,1,11,22,30,19,25,22,30,18,36,28,32,10,25,21,23,12,16,26,29,25,35,20,20,28,30,16,15,25,26,20,11,14,15,24,27,15,20,9,23,12,12,16,14,29,17,17,14,11,21,13,16,11,24,8,23,19,12,9,29,33,12,17,29,25,33,15,12,10,23,17,13,24,11,15,16,27,19,14,11,13,21,17,5,20,16,10,27,14,30,12,20,26,13,15,14,25,41,27,21,6,8,25,22,15,29,15,37,5,15,13,27,3,31,30,10,3,25,6,1,15,5,30,21,25,5,5,10,29,5,34,4,21,12,23,20,12,25,29],"opacity":0.8,"marker":{"color":"rgb(158,202,225)","line":{"color":"rgb(8,48,107)","width":1.5}},"type":"histogram","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+<p class="caption">
+
+Q31:How many years have you been in practice?
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Patient dynamics</h2></hgroup><article  id="patient-dynamics" class="smaller flexbox vcenter">
+
+<div class="figure">
+<div id="htmlwidget-d2870370396c7f18fafa" style="width:720px;height:432px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d2870370396c7f18fafa">{"x":{"visdat":{"2ecf9f2d658":["function () ","plotlyVisDat"]},"cur_data":"2ecf9f2d658","attrs":{"2ecf9f2d658":{"x":{},"opacity":0.8,"nbinsx":30,"marker":{"color":"rgb(158,202,225)","line":{"color":"rgb(8,48,107)","width":1.5}},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"histogram"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of % of Patients seen with VI","xaxis":{"domain":[0,1],"automargin":true,"title":"% of Patients seen with VI"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[15,5,15,20,5,20,7,5,5,15,2,10,75,50,4,1,30,20,5,31,15,25,10,5,10,3,10,15,10,5,10,5,10,10,10,5,20,10,50,10,10,20,5,5,30,5,15,25,70,3,5,2,30,5,60,3,40,60,10,1,8,40,15,18,15,10,4,5,5,1,3,5,5,20,5,15,1,15,10,10,10,5,3,12,10,5,5,15,5,15,5,5,15,5,15,10,50,5,10,1,10,8,20,5,10,5,5,35,6,1,30,10,95,7,10,8,3,5,15,12,3,10,10,5,15,5,65,10,18,5,8,20,18,15,5,10,12,5,10,10,15,20,30,20,9,1,15,10,15,2,1,1,5,10,8,2,5,5,5,5,10,15,10,15,3,5,15,1,5,8,15,2,5,50,8,5,3,10,40,20,2,30,18,2,5,2,10,5,2,5,25,25,5,10,4,5,25,2,15,5,33,4,40,5,5,30,5,5],"opacity":0.8,"nbinsx":30,"marker":{"color":"rgb(158,202,225)","line":{"color":"rgb(8,48,107)","width":1.5}},"type":"histogram","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+<p class="caption">
+
+Q32:What proportion of your total patients have a VI condition?
+
+</p></div>
+
+<aside class='note'><section><ul>
+<li>The distribution is right skewed</li>
+<li>The mean is about 13% of the patients are seen with VI, median is 10%</li>
+</ul></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Patient dynamics Continue</h2></hgroup><article  id="patient-dynamics-continue" class="smaller flexbox">
+
+<div style="text-align: left">
+<p>Q4: Please select which of the following conditions <br>you currently treat</p>
+
+<ul>
+<li>Skin conditions</li>
+<li>Venous insufficiency</li>
+<li>Blood clotting</li>
+<li>Chronic pain</li>
+<li>Other (Please specify)</li>
+</ul>
+
+<p>Venous Insufficiency</p>
+
+<ul>
+<li>Dermatology treats the most % of patients with VI</li>
+<li>Podiatry and Wound Care treats more than 30% of patients<br> with VI</li>
+</ul></div>
+
+<div id="htmlwidget-64c002fc9fe62c0bd3a8" style="width:480px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-64c002fc9fe62c0bd3a8">{"x":{"visdat":{"2ecf110aba36":["function () ","plotlyVisDat"]},"cur_data":"2ecf110aba36","attrs":{"2ecf110aba36":{"x":{},"y":{},"text":{},"hoverinfo":"text","color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":100,"l":50,"t":100,"r":50,"pad":4},"yaxis":{"domain":[0,1],"automargin":true,"title":"Percentage (%)"},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"","type":"category","categoryorder":"array","categoryarray":["Dermatology","Internal Medicine","Obstetrics/Gynecology","Orthopedics","Other (Please specify)","Podiatry","Primary Care (GP, FP, IM)","Wound Care"]},"title":"% of Patients treated with Condition by Specialty","legend":{"x":0.5,"y":-0.5,"orientation":"h"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":["Dermatology","Internal Medicine","Obstetrics/Gynecology","Orthopedics","Other (Please specify)","Podiatry","Primary Care (GP, FP, IM)","Wound Care"],"y":[6.25,24.0549828178694,22.7272727272727,23.5294117647059,22.1052631578947,16.6666666666667,23.4265734265734,10.3448275862069],"text":[1,70,5,4,21,1,67,3],"hoverinfo":["text","text","text","text","text","text","text","text"],"type":"bar","name":"Blood clotting","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Dermatology","Internal Medicine","Obstetrics/Gynecology","Orthopedics","Other (Please specify)","Podiatry","Primary Care (GP, FP, IM)","Wound Care"],"y":[6.25,24.0549828178694,22.7272727272727,29.4117647058824,21.0526315789474,16.6666666666667,23.7762237762238,24.1379310344828],"text":[1,70,5,5,20,1,68,7],"hoverinfo":["text","text","text","text","text","text","text","text"],"type":"bar","name":"Chronic pain","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Dermatology","Internal Medicine","Obstetrics/Gynecology","Orthopedics","Other (Please specify)","Podiatry","Primary Care (GP, FP, IM)","Wound Care"],"y":[0,2.40549828178694,0,0,4.21052631578947,0,1.74825174825175,0],"text":[0,7,0,0,4,0,5,0],"hoverinfo":["text","text","text","text","text","text","text","text"],"type":"bar","name":"Other (Please specify)","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Dermatology","Internal Medicine","Obstetrics/Gynecology","Orthopedics","Other (Please specify)","Podiatry","Primary Care (GP, FP, IM)","Wound Care"],"y":[43.75,23.0240549828179,27.2727272727273,17.6470588235294,24.2105263157895,33.3333333333333,25.1748251748252,31.0344827586207],"text":[7,67,6,3,23,2,72,9],"hoverinfo":["text","text","text","text","text","text","text","text"],"type":"bar","name":"Skin conditions","marker":{"color":"rgba(231,138,195,1)","line":{"color":"rgba(231,138,195,1)"}},"textfont":{"color":"rgba(231,138,195,1)"},"error_y":{"color":"rgba(231,138,195,1)"},"error_x":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Dermatology","Internal Medicine","Obstetrics/Gynecology","Orthopedics","Other (Please specify)","Podiatry","Primary Care (GP, FP, IM)","Wound Care"],"y":[43.75,26.4604810996564,27.2727272727273,29.4117647058824,28.4210526315789,33.3333333333333,25.8741258741259,34.4827586206897],"text":[7,77,6,5,27,2,74,10],"hoverinfo":["text","text","text","text","text","text","text","text"],"type":"bar","name":"Venous insufficiency","marker":{"color":"rgba(166,216,84,1)","line":{"color":"rgba(166,216,84,1)"}},"textfont":{"color":"rgba(166,216,84,1)"},"error_y":{"color":"rgba(166,216,84,1)"},"error_x":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+<aside class='note'><section><ul>
+<li>VI conodition is mostly treated in Dermatalogy, followed by Wound Care and Podiatry</li>
+</ul></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Patient dynamics continue</h2></hgroup><article  id="patient-dynamics-continue-1" class="smaller flexbox">
+
+<div style="text-align: left">
+<p>Q32:Approximately what proportion of your total patients<br>would you say have a venous insufficiency condition?</p>
+
+<ul>
+<li>Wound Care sees the most % of patients with VI<br>about 32%</li>
+<li>Podiatry and Wound Care sees more than 30% of patients<br> with VI on average</li>
+<li>Internal Medicine and Primary care sees about 10% of<br>patients with VI on average</li>
+</ul></div>
+
+<div id="htmlwidget-090b2eb58c2ddbbc5baa" style="width:480px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-090b2eb58c2ddbbc5baa">{"x":{"visdat":{"2ecf4ab65e5":["function () ","plotlyVisDat"]},"cur_data":"2ecf4ab65e5","attrs":{"2ecf4ab65e5":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":100,"l":50,"t":100,"r":50,"pad":4},"yaxis":{"domain":[0,1],"automargin":true,"title":"% of patients seen with VI"},"xaxis":{"domain":[0,1],"automargin":true,"title":"","type":"category","categoryorder":"array","categoryarray":["Dermatology","Internal Medicine","Obstetrics/Gynecology","Orthopedics","Other (Please specify)","Podiatry","Primary Care (GP, FP, IM)","Wound Care"]},"title":"% of Patients seen with VI by specialty","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"fillcolor":"rgba(31,119,180,0.5)","x":["Wound Care","Other (Please specify)","Internal Medicine","Other (Please specify)","Other (Please specify)","Primary Care (GP, FP, IM)","Other (Please specify)","Internal Medicine","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Internal Medicine","Internal Medicine","Wound Care","Primary Care (GP, FP, IM)","Other (Please specify)","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Internal Medicine","Obstetrics/Gynecology","Obstetrics/Gynecology","Internal Medicine","Primary Care (GP, FP, IM)","Wound Care","Orthopedics","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Wound Care","Internal Medicine","Obstetrics/Gynecology","Internal Medicine","Other (Please specify)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Other (Please specify)","Internal Medicine","Internal Medicine","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Other (Please specify)","Internal Medicine","Internal Medicine","Wound Care","Internal Medicine","Wound Care","Wound Care","Dermatology","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Internal Medicine","Internal Medicine","Wound Care","Dermatology","Dermatology","Dermatology","Dermatology","Obstetrics/Gynecology","Obstetrics/Gynecology","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Other (Please specify)","Internal Medicine","Dermatology","Primary Care (GP, FP, IM)","Other (Please specify)","Internal Medicine","Primary Care (GP, FP, IM)","Other (Please specify)","Internal Medicine","Wound Care","Internal Medicine","Internal Medicine","Orthopedics","Internal Medicine","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Internal Medicine","Internal Medicine","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Internal Medicine","Internal Medicine","Internal Medicine","Internal Medicine","Other (Please specify)","Other (Please specify)","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Orthopedics","Internal Medicine","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Obstetrics/Gynecology","Internal Medicine","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Primary Care (GP, FP, IM)","Dermatology","Internal Medicine","Other (Please specify)","Other (Please specify)","Internal Medicine","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Other (Please specify)","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Other (Please specify)","Other (Please specify)","Other (Please specify)","Other (Please specify)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Other (Please specify)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Internal Medicine","Internal Medicine","Primary Care (GP, FP, IM)","Other (Please specify)","Wound Care","Primary Care (GP, FP, IM)","Internal Medicine","Other (Please specify)","Other (Please specify)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Other (Please specify)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Other (Please specify)","Internal Medicine","Podiatry","Podiatry","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Other (Please specify)","Internal Medicine","Primary Care (GP, FP, IM)","Orthopedics","Primary Care (GP, FP, IM)","Internal Medicine","Orthopedics","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine","Primary Care (GP, FP, IM)","Primary Care (GP, FP, IM)","Internal Medicine"],"y":[15,5,15,20,5,20,7,5,5,15,2,10,75,50,4,1,30,20,5,31,15,25,10,5,10,3,10,15,10,5,10,5,10,10,10,5,20,10,50,10,10,20,5,5,30,5,15,25,70,3,5,2,30,5,60,3,40,60,10,1,8,40,15,18,15,10,4,5,5,1,3,5,5,20,5,15,1,15,10,10,10,5,3,12,10,5,5,15,5,15,5,5,15,5,15,10,50,5,10,1,10,8,20,5,10,5,5,35,6,1,30,10,95,7,10,8,3,5,15,12,3,10,10,5,15,5,65,10,18,5,8,20,18,15,5,10,12,5,10,10,15,20,30,20,9,1,15,10,15,2,1,1,5,10,8,2,5,5,5,5,10,15,10,15,3,5,15,1,5,8,15,2,5,50,8,5,3,10,40,20,2,30,18,2,5,2,10,5,2,5,25,25,5,10,4,5,25,2,15,5,33,4,40,5,5,30,5,5],"type":"box","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Patient dynamics Continue</h2></hgroup><article  id="patient-dynamics-continue-2" class="smaller flexbox vcenter">
+
+<div id="htmlwidget-c8d2e010d0ebb8ceb5dc" style="width:720px;height:432px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c8d2e010d0ebb8ceb5dc">{"x":{"visdat":{"2ecf387c0c06":["function () ","plotlyVisDat"]},"cur_data":"2ecf387c0c06","attrs":{"2ecf387c0c06":{"x":{},"opacity":0.8,"nbinsx":6,"marker":{"color":"rgb(158,202,225)","line":{"color":"rgb(8,48,107)","width":1.5}},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"histogram"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of # of treatments/referral options provided by providers","xaxis":{"domain":[0,1],"automargin":true,"title":"# of treatments"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[5,1,2,2,3,1,2,3,1,2,3,3,3,2,2,3,2,1,2,3,2,3,2,2,3,2,2,2,3,2,2,2,2,2,2,3,3,2,2,2,2,3,2,2,3,3,4,2,2,2,2,3,3,3,2,1,2,1,3,4,2,3,3,2,2,2,5,2,2,4,2,3,1,4,3,3,2,2,2,2,3,2,2,2,2,2,3,1,3,1,3,2,2,3,2,2,2,2,2,2,3,2,3,2,5,3,3,2,2,2,4,6,2,3,2,2,2,3,3,2,3,1,3,2,2,3,3,2,3,2,3,3,5,3,3,4,2,4,3,3,2,3,2,3,3,2,3,1,2,2,4,3,3,2,2,1,2,3,2,3,2,2,2,2,3,5,2,2,2,2,2,2,3,2,2,2,1,2],"opacity":0.8,"nbinsx":6,"marker":{"color":"rgb(158,202,225)","line":{"color":"rgb(8,48,107)","width":1.5}},"type":"histogram","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+<aside class='note'><section><ul>
+<li>The distribution is slightly right skewed, which means more values in the lower end</li>
+<li>More than half of the practices provide 2 or 3 treatments/referral options to the patients</li>
+</ul></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Patient dynamics continue</h2></hgroup><article  id="patient-dynamics-continue-3" class="smaller flexbox vcenter">
+
+<p>Question 7A: Please select up to two of the following ways that the medical community might become better informed about treatment options for venous insufficiency that you think would be most effective.</p>
+
+<div id="htmlwidget-9d1b5d15875cf82f80f2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9d1b5d15875cf82f80f2">{"x":{"filter":"none","extensions":["Scroller","FixedColumns"],"fillContainer":true,"data":[["Brochures and materials mailed to physicians","Colleague, peer, partner in practice","Emails to physicians linking to venous educational websites","In-person seminars and CMEs on venous insufficiency","Medical journal article","Online advertising, pop-up or banner ads","Online seminars and CMEs on venous insufficiency","Online website","Print advertising","Social media posts","TV or radio advertising","Visits by medical device reps","Visits by pharmaceutical reps","Visits by reps for facilities that treat venous insufficiency patients"],["0 / 0%","1 / 10%","1 / 10%","1 / 10%","2 / 20%","0 / 0%","1 / 10%","0 / 0%","0 / 0%","1 / 10%","0 / 0%","2 / 20%","0 / 0%","1 / 10%"],["2 / 8%","2 / 8%","2 / 8%","4 / 16%","4 / 16%","0 / 0%","2 / 8%","1 / 4%","0 / 0%","1 / 4%","2 / 8%","2 / 8%","2 / 8%","1 / 4%"],["5 / 7.14%","9 / 12.86%","3 / 4.29%","14 / 20%","11 / 15.71%","0 / 0%","7 / 10%","2 / 2.86%","1 / 1.43%","1 / 1.43%","2 / 2.86%","4 / 5.71%","2 / 2.86%","9 / 12.86%"],["2 / 5.88%","2 / 5.88%","1 / 2.94%","6 / 17.65%","7 / 20.59%","1 / 2.94%","6 / 17.65%","1 / 2.94%","0 / 0%","0 / 0%","0 / 0%","2 / 5.88%","5 / 14.71%","1 / 2.94%"],["7 / 4.52%","13 / 8.39%","10 / 6.45%","20 / 12.9%","34 / 21.94%","2 / 1.29%","17 / 10.97%","10 / 6.45%","3 / 1.94%","2 / 1.29%","1 / 0.65%","7 / 4.52%","15 / 9.68%","14 / 9.03%"],["0 / 0%","0 / 0%","0 / 0%","1 / 33.33%","0 / 0%","0 / 0%","1 / 33.33%","0 / 0%","0 / 0%","0 / 0%","1 / 33.33%","0 / 0%","0 / 0%","0 / 0%"],["4 / 6.25%","10 / 15.62%","2 / 3.12%","8 / 12.5%","10 / 15.62%","0 / 0%","10 / 15.62%","1 / 1.56%","2 / 3.12%","2 / 3.12%","2 / 3.12%","4 / 6.25%","3 / 4.69%","6 / 9.38%"],["3 / 6.67%","7 / 15.56%","1 / 2.22%","6 / 13.33%","7 / 15.56%","0 / 0%","8 / 17.78%","1 / 2.22%","1 / 2.22%","2 / 4.44%","0 / 0%","3 / 6.67%","4 / 8.89%","2 / 4.44%"],["0 / 0%","0 / 0%","0 / 0%","1 / 50%","0 / 0%","0 / 0%","1 / 50%","0 / 0%","0 / 0%","0 / 0%","0 / 0%","0 / 0%","0 / 0%","0 / 0%"]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>DC<\/th>\n      <th>IN<\/th>\n      <th>MD<\/th>\n      <th>MI<\/th>\n      <th>NY<\/th>\n      <th>OH<\/th>\n      <th>PA<\/th>\n      <th>VA<\/th>\n      <th>WV<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"deferRender":true,"scrollY":200,"scroller":true,"fixedColumns":{"leftColumns":1},"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+
+<aside class='note'><section><ul>
+<li>MD: Medical Journal article, Colleague, visit by rep, online seminars</li>
+<li>MI: Medical Journal article, Online seminars, In-person seminars</li>
+<li>NY: Medical Journal atricle, Online seminars, In-person seminars</li>
+<li>PA: Medical Journal article, Online seminars, Colleague</li>
+<li>VA: Online seminars, Colleague, Medical Journal article</li>
+</ul></section></aside>
+
+<aside class='note'><section><p>Question 7A: Please select up to two of the following ways that the medical community might become better informed about treatment options for venous insufficiency that you think would be most effective.</p>
+
+<ul>
+<li>1:Brochures and materials mailed to physicians</li>
+<li>2:Emails to physicians linking to venous educational websites</li>
+<li>3:Online seminars and CMEs on venous insufficiency</li>
+<li>4:In-person seminars and CMEs on venous insufficiency</li>
+<li>5:Medical journal article</li>
+<li>6:TV or radio advertising</li>
+<li>7:Print advertising</li>
+<li>8:Online advertising, pop-up or banner ads</li>
+<li>9:Social media posts</li>
+<li>10:Online website</li>
+<li>11:Colleague, peer, partner in practice</li>
+<li>12:Visits by pharmaceutical reps</li>
+<li>13:Visits by reps for facilities that treat venous insufficiency patients</li>
+<li>14:Visits by medical device reps</li>
+<li>15:Other (Please specify)</li>
+</ul></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Patient dynamics continue</h2></hgroup><article  id="patient-dynamics-continue-4" class="smaller flexbox vcenter">
+
+<p>Question 7B: Please select up to two of the following ways that the patient might become better informed about treatment options for venous insufficiency that you think would be most effective.</p>
+
+<div id="htmlwidget-6555584bd41925b01a31" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6555584bd41925b01a31">{"x":{"filter":"none","extensions":["FixedColumns"],"fillContainer":true,"data":[["Brochures and materials at their physician's office","Emails from their physicians linking to venous educational websites","Friends and/or family","Medical journal articles","Online website","Social media posts","TV, online or radio advertising"],["2 / 22.22%","0 / 0%","1 / 11.11%","0 / 0%","2 / 22.22%","1 / 11.11%","3 / 33.33%"],["5 / 20%","4 / 16%","3 / 12%","0 / 0%","5 / 20%","4 / 16%","4 / 16%"],["20 / 29.85%","4 / 5.97%","7 / 10.45%","5 / 7.46%","10 / 14.93%","10 / 14.93%","11 / 16.42%"],["7 / 21.88%","2 / 6.25%","3 / 9.38%","2 / 6.25%","4 / 12.5%","4 / 12.5%","10 / 31.25%"],["38 / 26.57%","11 / 7.69%","10 / 6.99%","16 / 11.19%","21 / 14.69%","17 / 11.89%","30 / 20.98%"],["0 / 0%","0 / 0%","1 / 33.33%","0 / 0%","0 / 0%","0 / 0%","2 / 66.67%"],["15 / 26.32%","4 / 7.02%","3 / 5.26%","8 / 14.04%","7 / 12.28%","9 / 15.79%","11 / 19.3%"],["15 / 34.88%","6 / 13.95%","3 / 6.98%","2 / 4.65%","7 / 16.28%","3 / 6.98%","7 / 16.28%"],["0 / 0%","1 / 50%","0 / 0%","0 / 0%","1 / 50%","0 / 0%","0 / 0%"]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>DC<\/th>\n      <th>IN<\/th>\n      <th>MD<\/th>\n      <th>MI<\/th>\n      <th>NY<\/th>\n      <th>OH<\/th>\n      <th>PA<\/th>\n      <th>VA<\/th>\n      <th>WV<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"deferRender":true,"scrollY":200,"scroller":true,"fixedColumns":{"leftColumns":1},"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+
+<aside class='note'><section><ul>
+<li>MD: Brochures, TV/Online/Radio Advertising, Online Website, Social Media post</li>
+<li>MI: Brochures, TV/Online/Radio Advertising, Online Website, Social Media post</li>
+<li>NY: Brochures, TV/Online/Radio Advertising, Online Website</li>
+<li>PA: Brochures, TV/Online/Radio Advertising, Social Media post</li>
+<li>VA: Brochures, TV/Online/Radio Advertising, Online Website</li>
+</ul></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Patient dynamics continue</h2></hgroup><article  id="patient-dynamics-continue-5" class="smaller flexbox vcenter">
+
+<p>Question17: How important to you are the following when deciding to whom or where to refer your patients with venous insufficiency for treatment? <div id="htmlwidget-59f42827eea47e60a68b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-59f42827eea47e60a68b">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["Availability; short wait time for appointments","Breadth of services available","Cost","Electronic communication of results","Good communication and follow-up","Good customer service for patients","High level of service to referring physicians","In-network with your practice","Insurance coverage","Past outcome success","Past personal experience","Patient satisfaction","Professional relationship with Rep","Professional relationship with specialist","Proximity; easy patient access","Reputation"],[3,3,8,19,1,3,4,7,3,1,7,2,34,2,1,1],[9,10,8,28,7,4,7,16,9,2,10,2,35,14,4,5],[53,42,51,68,29,27,40,48,28,24,24,23,55,35,32,26],[72,92,71,40,74,76,65,63,65,61,60,57,39,78,90,69],[50,40,49,32,76,77,71,53,82,99,86,103,24,58,60,86]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Factors<\/th>\n      <th>1.Not at all important<\/th>\n      <th>2.Not Important<\/th>\n      <th>3.indifferent<\/th>\n      <th>4.Important<\/th>\n      <th>5.Extremely Important<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":16,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
+
+</article></slide><slide class=""><hgroup><h2>Model 1 Interpretation</h2></hgroup><article  id="model-1-interpretation" class="smaller flexbox vcenter">
+
+<div id="htmlwidget-3929c6eeab177721fc83" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3929c6eeab177721fc83">{"x":{"filter":"none","fillContainer":false,"data":[["Breadth of services available","Cost","Electronic communication of results","Good communication and follow-up","Good customer service for patients","High level of service to referring physicians","In-network with your practice","Insurance coverage","Past outcome success","Past personal experience","Patient satisfaction","Professional relationship with Rep","Professional relationship with specialist","Proximity; easy patient access","Reputation"],[-0.00835803279311316,-0.0628252261331801,-1.07002417692569,0.645295065441227,0.690676149653249,0.419846450712557,-0.0990187576523592,0.68833524564563,1.10583829975183,0.717540793591357,1.17043760462729,-1.53337857778405,0.229753400094512,0.4412880411637,0.844709065291697],[0.991676798455183,0.93910759081203,0.343000224627518,1.90654950315491,1.99506403915409,1.52172787744727,0.905725718576046,1.99039924779396,3.02175654510068,2.04938714253075,3.22340290596348,0.215805319184674,1.25828967755152,1.55470845788662,2.32730062353778]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Coefficient<\/th>\n      <th>Odds<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":16,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+<aside class='note'><section><p>A Proportional Odds Model are used to quantify which factor has the most influence in physician referring decision making.</p>
+
+<p>The model coefficients are shown in the table and the interpretation of the coefficient is the odds, which is exp(coefficient) of the factor compared to the baseline factor, which in this case would be availability. If the odds is greater than 1, it means that respondents are more likely to choose to the right direction of the scale than availability.</p>
+
+<p>For example, the estimated odds that provider choose Breadth of service available in the right direction (more important) is about 0.99 (almost the same) as they choose Availability</p>
+
+<p>The top factors are: Patient satisfaction, Past outcome success and Reputation</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Model Prediction 1</h2></hgroup><article  id="model-prediction-1" class="smaller ">
+
+<div id="htmlwidget-c29ad8ffefd7f01f2edb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c29ad8ffefd7f01f2edb">{"x":{"filter":"none","fillContainer":false,"data":[["Availability; short wait time for appointments","Breadth of services available","Cost","Electronic communication of results","Good communication and follow-up","Good customer service for patients","High level of service to referring physicians","In-network with your practice","Insurance coverage","Past outcome success","Past personal experience","Patient satisfaction","Professional relationship with Rep","Professional relationship with specialist","Proximity; easy patient access","Reputation"],[0.03,0.03,0.03,0.09,0.02,0.02,0.02,0.04,0.02,0.01,0.02,0.01,0.14,0.03,0.02,0.01],[0.06,0.06,0.07,0.14,0.03,0.03,0.04,0.07,0.03,0.02,0.03,0.02,0.19,0.05,0.04,0.03],[0.24,0.24,0.25,0.36,0.16,0.15,0.19,0.26,0.15,0.11,0.15,0.1,0.38,0.21,0.18,0.14],[0.39,0.39,0.39,0.29,0.37,0.37,0.39,0.39,0.37,0.32,0.37,0.32,0.22,0.39,0.38,0.35],[0.27,0.27,0.26,0.11,0.42,0.43,0.36,0.25,0.43,0.53,0.44,0.55,0.08,0.32,0.37,0.47]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>1.Not at all important<\/th>\n      <th>2.Not Important<\/th>\n      <th>3.indifferent<\/th>\n      <th>4.Important<\/th>\n      <th>5.Extremely Important<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":16,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Competition Analysis</h2></hgroup><article  id="competition-analysis" class="smaller flexbox vcenter">
+
+<p>Question 24: How familiar are you with the following venous insufficiency treatment centers? <div id="htmlwidget-ad1583a078ab705e729f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ad1583a078ab705e729f">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],[6,22,9,10,11,12,32],[19,30,42,12,25,28,48],[30,43,33,42,35,39,55],[153,113,124,144,137,129,73],[294,377,352,304,326,339,455]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Company/Familarity<\/th>\n      <th>Very Familiar<\/th>\n      <th>Familiar<\/th>\n      <th>Somewhat Familiar<\/th>\n      <th>Not Familiar<\/th>\n      <th>Score<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
+
+<aside class='note'><section><p>The score is a weighted sum of each choice of each company, Verry Familiar count for 4 points and Not Familiar count for 1 point.</p>
+
+<p>We can see that the respondents are most familiar with Vein clinics of America, followed by Center for Vein Restoration and CVI Cleveland Clinic</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Competition Analysis slide 3</h2></hgroup><article  id="competition-analysis-slide-3" class="smaller flexbox vcenter">
+
+<div id="htmlwidget-51a93980aa8de4ce7b84" style="width:768px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-51a93980aa8de4ce7b84">{"x":{"visdat":{"2ecf50402efc":["function () ","plotlyVisDat"]},"cur_data":"2ecf50402efc","attrs":{"2ecf50402efc":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(38, 24, 74, 0.8)","line":{"color":"rgb(248, 248, 249)","width":1}},"name":"Very Familiar","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"2ecf50402efc.1":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(71, 58, 131, 0.8)","line":{"color":"rgb(248, 248, 249)","width":1}},"name":"Familiar","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"2ecf50402efc.2":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(122, 120, 168, 0.8)","line":{"color":"rgb(248, 248, 249)","width":1}},"name":"Somewhat Familiar","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"2ecf50402efc.3":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(164, 163, 204, 0.85)","line":{"color":"rgb(248, 248, 249)","width":1}},"name":"Not Familiar","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":80,"l":120,"t":140,"r":10},"xaxis":{"domain":[0.15,1],"automargin":true,"title":"# of Respondents","showgrid":false,"showline":false,"showticklabels":false,"zeroline":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"","showgrid":false,"showline":false,"zeroline":false,"type":"category","categoryorder":"array","categoryarray":["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"]},"barmode":"stack","paper_bgcolor":"rgb(248, 248, 255)","plot_bgcolor":"rgb(248, 248, 255)","showlegend":true,"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[6,22,9,10,11,12,32],"y":["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],"orientation":"h","marker":{"color":"rgba(38, 24, 74, 0.8)","line":{"color":"rgb(248, 248, 249)","width":1}},"name":"Very Familiar","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[19,30,42,12,25,28,48],"y":["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],"orientation":"h","marker":{"color":"rgba(71, 58, 131, 0.8)","line":{"color":"rgb(248, 248, 249)","width":1}},"name":"Familiar","type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[30,43,33,42,35,39,55],"y":["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],"orientation":"h","marker":{"color":"rgba(122, 120, 168, 0.8)","line":{"color":"rgb(248, 248, 249)","width":1}},"name":"Somewhat Familiar","type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[153,113,124,144,137,129,73],"y":["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],"orientation":"h","marker":{"color":"rgba(164, 163, 204, 0.85)","line":{"color":"rgb(248, 248, 249)","width":1}},"name":"Not Familiar","type":"bar","error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Competition Analysis slide 2</h2></hgroup><article  id="competition-analysis-slide-2" class="smaller flexbox vcenter">
+
+<div id="htmlwidget-169aa2a97a85d9c0ea91" style="width:720px;height:432px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-169aa2a97a85d9c0ea91">{"x":{"visdat":{"2ecf2847a95e":["function () ","plotlyVisDat"]},"cur_data":"2ecf2847a95e","attrs":{"2ecf2847a95e":{"color":["gray80"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","showlegend":false,"inherit":true},"2ecf2847a95e.1":{"color":["pink"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","name":"CVR","inherit":true},"2ecf2847a95e.2":{"color":["blue"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","name":"VCA","inherit":true}},"layout":{"margin":{"b":40,"l":65,"t":25,"r":10},"title":"Familarity by States between VCA and CVR","xaxis":{"domain":[0,1],"automargin":true,"title":"Scores"},"yaxis":{"domain":[0,1],"automargin":true,"title":"States","type":"category","categoryorder":"array","categoryarray":["DC","IN","MD","MI","NY","OH","PA","VA","WV"]},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[14,15,null,23,31,null,82,97,null,26,30,null,130,147,null,3,2,null,49,79,null,49,50,null,1,4],"y":["DC","DC",null,"IN","IN",null,"MD","MD",null,"MI","MI",null,"NY","NY",null,"OH","OH",null,"PA","PA",null,"VA","VA",null,"WV","WV"],"type":"scatter","mode":"lines","showlegend":false,"marker":{"color":"rgba(204,204,204,1)","line":{"color":"rgba(204,204,204,1)"}},"textfont":{"color":"rgba(204,204,204,1)"},"error_y":{"color":"rgba(204,204,204,1)"},"error_x":{"color":"rgba(204,204,204,1)"},"line":{"color":"rgba(204,204,204,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[14,23,82,26,130,3,49,49,1],"y":["DC","IN","MD","MI","NY","OH","PA","VA","WV"],"type":"scatter","mode":"markers","name":"CVR","marker":{"color":"rgba(255,192,203,1)","line":{"color":"rgba(255,192,203,1)"}},"textfont":{"color":"rgba(255,192,203,1)"},"error_y":{"color":"rgba(255,192,203,1)"},"error_x":{"color":"rgba(255,192,203,1)"},"line":{"color":"rgba(255,192,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[15,31,97,30,147,2,79,50,4],"y":["DC","IN","MD","MI","NY","OH","PA","VA","WV"],"type":"scatter","mode":"markers","name":"VCA","marker":{"color":"rgba(0,0,255,1)","line":{"color":"rgba(0,0,255,1)"}},"textfont":{"color":"rgba(0,0,255,1)"},"error_y":{"color":"rgba(0,0,255,1)"},"error_x":{"color":"rgba(0,0,255,1)"},"line":{"color":"rgba(0,0,255,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+<aside class='note'><section><p>This is a weighted score breakdown between VCA and CVR by state, we can see that VCA is more familiar than CVR in almost all the states that CVR currently covers</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Competition Analysis slide 4</h2></hgroup><article  id="competition-analysis-slide-4" class="smaller flexbox vcenter">
+
+<div id="htmlwidget-a53aa696c07b0590a479" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a53aa696c07b0590a479">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7"],["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],[179,150,174,183,183,169,141],[20,36,21,16,14,20,46],[6,18,12,8,10,11,14],[3,4,1,1,1,8,7]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Company<\/th>\n      <th>I have not referred any Patients<\/th>\n      <th>1 - 2 Patients/Month<\/th>\n      <th>3 - 4 Patients/Month<\/th>\n      <th>5+ Patients/Month<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":16,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Model 2 Interpretation</h2></hgroup><article  id="model-2-interpretation" class="smaller ">
+
+<div id="htmlwidget-a8950b165a2d5bd761dd" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a8950b165a2d5bd761dd">{"x":{"filter":"none","fillContainer":false,"data":[["Capitol Vein and Laser","CVI Cleveland Clinic","Maryland Vein","Medical Center","USA Vein Clinics","Vein Clinics of America"],[-0.865932259736748,-0.673199454780486,-1.03178702275214,-1.02173570348523,-0.471291832141606,0.177077022932741],[0.420659206130548,0.510074005595393,0.356369550710526,0.359969597140701,0.624195391550816,1.19372303363526]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Coefficient<\/th>\n      <th>Odds<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":16,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Model 2 prediction</h2></hgroup><article  id="model-2-prediction" class="smaller ">
+
+<div id="htmlwidget-83609ac29325a18227d9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-83609ac29325a18227d9">{"x":{"filter":"none","fillContainer":false,"data":[["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],[0.86,0.72,0.84,0.88,0.88,0.81,0.69],[0.09,0.17,0.1,0.08,0.08,0.12,0.19],[0.04,0.08,0.04,0.03,0.03,0.05,0.1],[0.01,0.03,0.01,0.01,0.01,0.02,0.03]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>I have not referred any Patients<\/th>\n      <th>1 - 2 Patients/Month<\/th>\n      <th>3 - 4 Patients/Month<\/th>\n      <th>5+ Patients/Month<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":16,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+</article></slide><slide class=""><hgroup><h2>Competition Analysis slide 4</h2></hgroup><article  id="competition-analysis-slide-4-1" class="smaller flexbox">
+
+<div style="text-align: left">
+<p>How did you become familiar with these centers?</p>
+
+<ol>
+<li>Visited frequently by a rep <br>from the practice</li>
+<li>Know the physician <br>personally or professionally</li>
+<li>Hospital affiliate or partner</li>
+<li>Local to my practice <br>so I choose to send <br>because they are close by</li>
+<li>Researched and networked and <br>selected this doctor based <br>off of recommendations</li>
+<li>Refer patients to one another <br>(cross-refer partnership)</li>
+<li>Other, please specify</li>
+</ol></div>
+
+<div id="htmlwidget-cb7741868fbaaa5f84da" style="width:480px;height:432px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cb7741868fbaaa5f84da">{"x":{"visdat":{"2ecf26e9eae4":["function () ","plotlyVisDat"],"2ecf473c32b1":["function () ","data"]},"cur_data":"2ecf473c32b1","attrs":{"2ecf473c32b1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"bar","color":{},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"yaxis":{"domain":[0,1],"automargin":true,"title":""},"barmode":"group","xaxis":{"domain":[0,1],"automargin":true,"title":"Choice","type":"category","categoryorder":"array","categoryarray":["A","B","C","D","E","F","G"]},"title":"","legend":{"x":0.5,"y":-0.5,"orientation":"h"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":["A","B","C","D","E","F","G"],"y":[3,10,4,6,20,5,16],"type":"bar","name":"Capitol Vein and Laser","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["A","B","C","D","E","F","G"],"y":[23,17,6,20,27,9,19],"type":"bar","name":"Center for Vein Restoration","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["A","B","C","D","E","F","G"],"y":[4,10,7,5,31,7,29],"type":"bar","name":"CVI Cleveland Clinic","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["A","B","C","D","E","F","G"],"y":[5,9,6,4,18,10,20],"type":"bar","name":"Maryland Vein","marker":{"color":"rgba(231,138,195,1)","line":{"color":"rgba(231,138,195,1)"}},"textfont":{"color":"rgba(231,138,195,1)"},"error_y":{"color":"rgba(231,138,195,1)"},"error_x":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["A","B","C","D","E","F","G"],"y":[3,10,3,5,24,13,22],"type":"bar","name":"Tufts Medical Center","marker":{"color":"rgba(166,216,84,1)","line":{"color":"rgba(166,216,84,1)"}},"textfont":{"color":"rgba(166,216,84,1)"},"error_y":{"color":"rgba(166,216,84,1)"},"error_x":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["A","B","C","D","E","F","G"],"y":[8,15,6,11,23,9,23],"type":"bar","name":"USA Vein Clinics","marker":{"color":"rgba(255,217,47,1)","line":{"color":"rgba(255,217,47,1)"}},"textfont":{"color":"rgba(255,217,47,1)"},"error_y":{"color":"rgba(255,217,47,1)"},"error_x":{"color":"rgba(255,217,47,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["A","B","C","D","E","F","G"],"y":[20,23,8,27,29,5,44],"type":"bar","name":"Vein Clinics of America","marker":{"color":"rgba(229,196,148,1)","line":{"color":"rgba(229,196,148,1)"}},"textfont":{"color":"rgba(229,196,148,1)"},"error_y":{"color":"rgba(229,196,148,1)"},"error_x":{"color":"rgba(229,196,148,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+<aside class='note'><section><ol>
+<li>Visited frequently by a rep from the practice: Center for Vein Restoration, Vein clinics of America</li>
+<li>Know the physician personally or professionally: Vein clinics of America, Center for Vein Restoration</li>
+<li>Hospital affiliate or partner: Vein Clinics of America,CVI Cleveland Clinic</li>
+<li>Local to my practice so I choose to send because they are close by: Vein Clinics of America, CVI Cleveland Clinic</li>
+<li>Researched and networked and selected this doctor based off of recommendations: CVI Cleveland Clinic, Vein Clinics of America</li>
+<li>Refer patients to one another(cross-refer partnership): Tufts Medical Center, Center for Vein Restoration</li>
+<li>Other, please specify</li>
+</ol></section></aside>
+
+</article></slide><slide class=""><hgroup><h2>Competition Analysis slide 5</h2></hgroup><article  id="competition-analysis-slide-5" class="smaller flexbox vcenter">
+
+<p>Question 25: How satisfied are you with your experiences referring your venous insufficiency patients to these centers? <div id="htmlwidget-97c9efce7162067f932e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-97c9efce7162067f932e">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7"],["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],["6.9%","5.17%","2.94%","12%","4%","2.56%","4.48%"],["20.69%","20.69%","23.53%","24%","24%","28.21%","23.88%"],["48.28%","46.55%","50%","44%","36%","48.72%","46.27%"],["24.14%","27.59%","23.53%","20%","36%","20.51%","25.37%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Company<\/th>\n      <th>2.Not Satisfied<\/th>\n      <th>3.indifferent<\/th>\n      <th>4.Satisfied<\/th>\n      <th>5.Extremely Satisfied<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
+
+</article></slide><slide class=""><hgroup><h2>PL Coverage slide 1</h2></hgroup><article  id="pl-coverage-slide-1" class="smaller flexbox vcenter">
+
+<p>Question 26: For the treatment centers with which you are familiar, which ones have venous insufficiency reps that visit you? <div id="htmlwidget-6d0261f0a25a5cfb2014" style="width:768px;height:432px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d0261f0a25a5cfb2014">{"x":{"visdat":{"2ecf26704250":["function () ","plotlyVisDat"]},"cur_data":"2ecf26704250","attrs":{"2ecf26704250":{"labels":{},"values":{},"textposition":"outside","textinfo":"label+percent","hoverinfo":"text","text":{},"insidetextfont":{"color":"#FFFFFF"},"marker":{"colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Rep Coverage","showlegend":false,"xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false},"data":[{"labels":["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","No rep visit","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],"values":[7,31,8,8,145,5,10,38],"textposition":["outside","outside","outside","outside","outside","outside","outside","outside"],"textinfo":"label+percent","hoverinfo":["text","text","text","text","text","text","text","text"],"text":["Capitol Vein and Laser :  7","Center for Vein Restoration :  31","CVI Cleveland Clinic :  8","Maryland Vein :  8","No rep visit :  145","Tufts Medical Center :  5","USA Vein Clinics :  10","Vein Clinics of America :  38"],"insidetextfont":{"color":"#FFFFFF"},"marker":{"color":"rgba(31,119,180,1)","colors":["#66C2A5","#FC8D62","#8DA0CB","#E78AC3","#A6D854","#FFD92F","#E5C494","#B3B3B3"],"line":{"color":"#FFFFFF","width":1}},"showlegend":false,"type":"pie","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script></p>
+
+</article></slide><slide class=""><hgroup><h2>PL Coverage slide 2</h2></hgroup><article  id="pl-coverage-slide-2" class="smaller flexbox vcenter">
+
+<p>Question 27: How frequently do venous insufficiency reps from each of the following facilities visit you? <div id="htmlwidget-bd93ab893ba5def08067" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bd93ab893ba5def08067">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7"],["Capitol Vein and Laser","Center for Vein Restoration","CVI Cleveland Clinic","Maryland Vein","Tufts Medical Center","USA Vein Clinics","Vein Clinics of America"],["42.86%","35.48%","37.5%","62.5%","20%","20%","39.47%"],["42.86%","6.45%","25%","12.5%","0%","30%","21.05%"],["14.29%","58.06%","37.5%","25%","80%","50%","39.47%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Company<\/th>\n      <th>Less than once every 3 months<\/th>\n      <th>Once a month or more<\/th>\n      <th>Once every 2-3 months<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":[2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
+
+</article></slide><slide class=""><hgroup><h2>PL Coverage slide 2</h2></hgroup><article  id="pl-coverage-slide-2-1" class="smaller flexbox vcenter">
+
+<p>Question 29: How well do each of the following attributes describe the most effective venous insufficiency reps that you interact with? <div id="htmlwidget-71224deaa862b3883c53" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-71224deaa862b3883c53">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["Asks me to refer to their facility; are direct","Behaves professionally","Consults about specific patient problems","Does regular visits","Doesn't waste my time","Follows up on questions","Has a friendly personality","Is able to answer questions","Knows the facility well","Persistent","Presents information in a fair and unbiased manner","Provides new information about treatment options","Treats my office personnel well","Trustworthy/Credible","Understands the needs of my practice"],[2,1,4,2,2,1,1,1,1,3,1,1,1,1,2],[5,4,9,7,4,4,3,3,4,7,6,3,5,4,5],[9,7,15,19,18,14,12,11,15,22,14,16,11,14,19],[27,24,20,20,19,22,18,20,16,18,22,20,20,21,17],[20,27,15,15,20,22,29,28,27,13,20,23,26,23,20]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Factor<\/th>\n      <th>Do not describe them at all<\/th>\n      <th>Do not describe them well<\/th>\n      <th>Indifferent<\/th>\n      <th>Describe them well<\/th>\n      <th>Describe them very well<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-center","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script></p>
+
+</article></slide><slide class=""><hgroup><h2>Model 3 Interpretation</h2></hgroup><article  id="model-3-interpretation" class="smaller ">
+
+<div id="htmlwidget-6441e74398e08382c074" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6441e74398e08382c074">{"x":{"filter":"none","fillContainer":false,"data":[["Behaves professionally","Consults about specific patient problems","Does regular visits","Doesn't waste my time","Follows up on questions","Has a friendly personality","Is able to answer questions","Knows the facility well","Persistent","Presents information in a fair and unbiased manner","Provides new information about treatment options","Treats my office personnel well","Trustworthy/Credible","Understands the needs of my practice"],[0.399119691109398,-0.651600579822285,-0.549240876638705,-0.215941374719159,0.0200991398311284,0.389037577117289,0.374107757161153,0.180861600851303,-0.757184616133895,-0.137670909754604,0.0423540609143395,0.21258245956143,0.0562088390136973,-0.294974389535347],[1.49051200896724,0.521210869170787,0.577387952740851,0.805782539716488,1.02030248762912,1.47555999758239,1.45369378793307,1.19824933112949,0.468984942716234,0.871385409003368,1.04326379229936,1.23686810096146,1.05781857445827,0.744550655509983]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Coefficient<\/th>\n      <th>Odds<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pagelength":16,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+<aside class='note'><section><p>Top 3 factors in making a good physician liason from the perspective of a physician - Baseline: Asks me to refer to their facility; are direct - Behaves professionally - Treats my office personal well - Has a friendly personality</p></section></aside></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
